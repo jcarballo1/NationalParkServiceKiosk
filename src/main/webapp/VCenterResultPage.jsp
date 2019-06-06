@@ -9,8 +9,6 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="org.mypackage.nationalpark.*"%>
-<%@page import="org.mypackage.nationalpark.VCenterSearchRequest"%>
-<%@page import="org.mypackage.nationalpark.VCenterSearchResult;"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" import ="org.mypackage.nationalpark.VCenterSearchRequest" language="java"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">

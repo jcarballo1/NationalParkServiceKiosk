@@ -9,6 +9,10 @@
         <servlet-class>org.mypackage.nationalpark.VCServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CEServlet</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.CEServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>EdServlet</servlet-name>
         <servlet-class>org.mypackage.nationalpark.EdServlet</servlet-class>
     </servlet>
@@ -19,6 +23,10 @@
     <servlet-mapping>
         <servlet-name>VCServlet</servlet-name>
         <url-pattern>/VCServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CEServlet</servlet-name>
+        <url-pattern>/CEServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EdServlet</servlet-name>
