@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jcarb
  */
-@WebServlet("/MapServlet")
 public class MapServlet extends HttpServlet {
 
     /**
@@ -34,13 +34,15 @@ public class MapServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try {
             String desig = request.getParameter("designation");
             MapRequest req = new MapRequest();
             MapResult result = req.sendGet(desig);
             request.setAttribute("longitude", result.getLongitude());
             request.setAttribute("latitude", result.getLatitude());
-            request.getRequestDispatcher("/WEB-INF/MapResultPage.jsp").forward(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("MapResultPage.jsp");
+            dispatcher.forward(request, response);
+        } finally {
         }
     }
 

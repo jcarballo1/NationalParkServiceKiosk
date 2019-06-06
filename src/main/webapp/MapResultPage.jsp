@@ -594,26 +594,30 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <h3>Search Results.</h3>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-12">
-                        <div id="googleMap" style="width:100%;height:400px;"></div>
-
+                        <script
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2C3nj6shFaou4TBmgevRbKL3p5aN4UxY&v=3.exp&sensor=false"></script>
                         <script>
-                            function myMap() {
-                                var mapProp = {
-                                    center: new google.maps.LatLng(${latitude}, ${longitude}),
-                                    zoom: 5,
+                            var map;
+                            function initialize() {
+                                var mapOptions = {
+                                    zoom: 10,
+                                    center: new google.maps.LatLng(${latitude}, ${longitude})
                                 };
-                                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                                map = new google.maps.Map(document.getElementById('map-canvas'),
+                                        mapOptions);
+
+                                var marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(${latitude}, ${longitude}),
+                                    map: map,
+                                    title: 'Designation'
+                                });
                             }
+
+                            google.maps.event.addDomListener(window, 'load', initialize);
                         </script>
+                        <div id="map-canvas" style="height:500px;"></div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

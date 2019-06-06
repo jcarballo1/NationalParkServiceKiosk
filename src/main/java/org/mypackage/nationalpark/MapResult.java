@@ -16,8 +16,8 @@ public class MapResult {
     
     public MapResult(String coords){
         String [] array = coords.split(", ");
-        latitude = array[0].substring(3);
-        longitude = array[1].substring(4);
+        latitude = array[0].substring(4);
+        longitude = array[1].substring(5);
     }
 
     /**
