@@ -6,36 +6,36 @@ package org.mypackage.nationalpark;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author jcarb
  */
 public class EdSearchResult {
+
     //Lesson Plans
     private String title = "";
     private String url = "";
     private String objective = "";
     private String subject = "";
-    
+
     //People
     private String personName = "";
     private String imageURL = "";
-    
+
     //Places
     private String listingDes = "";
-    
+
     private String type = "";
-    
-    public EdSearchResult(String t, String u, String o, String s){ //Lesson Plans
+
+    public EdSearchResult(String t, String u, String o, String s) { //Lesson Plans
         title = t;
         url = u;
         objective = o;
         subject = s;
         type = "Lesson Plan";
     }
-    
-    public EdSearchResult(String iu, String ld, String t, String u, String ty){ //People & Place
+
+    public EdSearchResult(String iu, String ld, String t, String u, String ty) { //People & Place
         imageURL = iu;
         listingDes = ld;
         title = t;

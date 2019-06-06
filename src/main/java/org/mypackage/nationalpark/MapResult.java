@@ -5,17 +5,17 @@ package org.mypackage.nationalpark;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author jcarb
  */
 public class MapResult {
+
     private String latitude;
     private String longitude;
-    
-    public MapResult(String coords){
-        String [] array = coords.split(", ");
+
+    public MapResult(String coords) {
+        String[] array = coords.split(", ");
         latitude = array[0].substring(4);
         longitude = array[1].substring(5);
     }

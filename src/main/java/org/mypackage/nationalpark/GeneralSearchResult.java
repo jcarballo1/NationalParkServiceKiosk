@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author jcarb
  */
 public class GeneralSearchResult {
+
     private String name;
     private String coords;
     private String descrip;
@@ -26,7 +27,7 @@ public class GeneralSearchResult {
     private String url;
 
     public GeneralSearchResult(String n, String c, String d, String w, ArrayList<Address> a, ArrayList<PhoneNumber> num,
-        ArrayList<String> e, ArrayList<EntranceFee> f, ArrayList<EntrancePass> p, ArrayList<Image> i, ArrayList<Hours> h, String u){
+            ArrayList<String> e, ArrayList<EntranceFee> f, ArrayList<EntrancePass> p, ArrayList<Image> i, ArrayList<Hours> h, String u) {
         name = n;
         coords = c;
         descrip = d;
@@ -40,6 +41,7 @@ public class GeneralSearchResult {
         hours = h;
         url = u;
     }
+
     /**
      * @return the name
      */
@@ -208,5 +210,4 @@ public class GeneralSearchResult {
         this.emails = emails;
     }
 
-   
 }

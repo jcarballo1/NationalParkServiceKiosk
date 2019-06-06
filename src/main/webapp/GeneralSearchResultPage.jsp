@@ -41,6 +41,7 @@
             <li><a href="CurrentEvents.html">Current Events</a></li>
             <li><a href="Education.html">Education</a></li>
             <li><a href="Map.html">Map</a></li>
+            <li><a href="Gallery.html">Designation Gallery</a></li>
         </ul>
     </nav>
 

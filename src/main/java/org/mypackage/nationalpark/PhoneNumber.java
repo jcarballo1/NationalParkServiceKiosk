@@ -5,20 +5,20 @@
  */
 package org.mypackage.nationalpark;
 
-
 /**
  *
  * @author jcarb
  */
 public class PhoneNumber {
+
     private String number;
     private String type;
-    
-    public PhoneNumber(String n, String t){
+
+    public PhoneNumber(String n, String t) {
         number = n;
         type = t;
     }
-    
+
     /**
      * @return the number
      */

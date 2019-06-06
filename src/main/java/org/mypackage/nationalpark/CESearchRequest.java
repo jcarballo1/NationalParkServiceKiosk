@@ -431,36 +431,36 @@ public class CESearchRequest {
             JSONArray curr = null;
             JSONObject currObj = null;
             boolean good = true;
-            
+
             try {
                 abs = subObj.getString("abstract");
             } catch (Exception e) {
             }
-            
+
             try {
                 releaseDate = subObj.getString("releasedate");
             } catch (Exception e) {
             }
-            
+
             try {
                 title = subObj.getString("title");
             } catch (Exception e) {
             }
-            
+
             try {
                 url = subObj.getString("url");
             } catch (Exception e) {
             }
-            
+
             try {
                 currObj = subObj.getJSONObject("image");
             } catch (Exception e) {
                 good = false;
             }
-            if(good){
+            if (good) {
                 imageURL = currObj.getString("url");
             }
-            
+
             results.add(new CESearchResult(abs, releaseDate, title, url, imageURL, ""));
         }
     }

@@ -12,16 +12,17 @@ import java.util.Map;
  * @author jcarb
  */
 public class Hours {
+
     private String name;
     private String des;
     private Map<String, String> stanHours;
-    
-    public Hours(String n, String d, Map<String, String> h){
+
+    public Hours(String n, String d, Map<String, String> h) {
         name = n;
         des = d;
         stanHours = h;
     }
-    
+
     /**
      * @return the name
      */

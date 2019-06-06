@@ -5,12 +5,12 @@
  */
 package org.mypackage.nationalpark;
 
-
 /**
  *
  * @author jcarb
  */
 public class Address {
+
     private String line1;
     private String line2;
     private String line3;
@@ -19,7 +19,7 @@ public class Address {
     private String zip;
     private String type;
 
-    public Address(String l1, String l2, String l3, String c, String s, String z, String t){
+    public Address(String l1, String l2, String l3, String c, String s, String z, String t) {
         line1 = l1;
         line2 = l2;
         line3 = l3;
@@ -28,7 +28,7 @@ public class Address {
         zip = z;
         type = t;
     }
-    
+
     /**
      * @return the line1
      */

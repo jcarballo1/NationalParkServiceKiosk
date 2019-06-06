@@ -5,22 +5,28 @@
  */
 package org.mypackage.nationalpark;
 
-
 /**
  *
  * @author jcarb
  */
 public class Image {
+
     private String url;
     private String caption;
     private String cred;
-    
-    public Image(String u, String cap, String cre){
+
+    public Image(String u, String cap, String cre) {
         url = u;
         caption = cap;
         cred = cre;
     }
     
+    public Image(String u, String cap){
+        url = u;
+        caption = cap;
+        cred = "";
+    }
+
     /**
      * @return the url
      */
@@ -62,5 +68,5 @@ public class Image {
     public void setCred(String cred) {
         this.cred = cred;
     }
-    
+
 }

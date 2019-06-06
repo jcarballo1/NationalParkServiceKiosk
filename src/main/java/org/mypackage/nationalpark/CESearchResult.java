@@ -12,17 +12,18 @@ import java.util.ArrayList;
  * @author jcarb
  */
 public class CESearchResult {
+
     //alert
     private String title = "";
     private String category = "";
     private String description = "";
     private String url = "";
-    
+
     //articles
     private String altText = "";
     private String listingDes = "";
     private String imageURL = "";
-    
+
     //events
     private String email = "";
     private String contactName = "";
@@ -32,22 +33,22 @@ public class CESearchResult {
     private String timeStart = "";
     private String timeEnd = "";
     private String fees = "";
-    
+
     //news
     private String abs = ""; //abstract
     private String releaseDate = "";
-    
+
     private String type = "";
-    
-    public CESearchResult(String t, String c, String d, String u){ //Alert
+
+    public CESearchResult(String t, String c, String d, String u) { //Alert
         title = t;
         category = c;
         description = d;
         url = u;
         type = "Alert";
     }
-    
-    public CESearchResult(String alt, String iURL, String l, String t, String u){ //Article
+
+    public CESearchResult(String alt, String iURL, String l, String t, String u) { //Article
         altText = alt;
         imageURL = iURL;
         listingDes = l;
@@ -55,11 +56,11 @@ public class CESearchResult {
         url = u;
         type = "Article";
     }
-    
-    public CESearchResult(String e, String name, String phone, ArrayList<String> ds, String l, String tStart, String tEnd, String d, String t, String f, String u){ //Event
+
+    public CESearchResult(String e, String name, String phone, ArrayList<String> ds, String l, String tStart, String tEnd, String d, String t, String f, String u) { //Event
         email = e;
         contactName = name;
-        contactPhone = phone; 
+        contactPhone = phone;
         dates = ds;
         location = l;
         timeStart = tStart;
@@ -70,8 +71,8 @@ public class CESearchResult {
         url = u;
         type = "Event";
     }
-    
-    public CESearchResult(String a, String rd, String t, String u, String iu, String blank){ //News
+
+    public CESearchResult(String a, String rd, String t, String u, String iu, String blank) { //News
         abs = a;
         releaseDate = rd;
         title = t;
@@ -79,7 +80,7 @@ public class CESearchResult {
         imageURL = iu;
         type = "News";
     }
-    
+
     /**
      * @return the title
      */
@@ -177,7 +178,7 @@ public class CESearchResult {
     public void setContactPhone(String contactPhone) {
         this.contactPhone = contactPhone;
     }
-    
+
     /**
      * @return the dates
      */

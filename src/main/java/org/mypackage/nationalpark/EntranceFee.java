@@ -5,22 +5,22 @@
  */
 package org.mypackage.nationalpark;
 
-
 /**
  *
  * @author jcarb
  */
 public class EntranceFee {
+
     private String cost;
     private String des;
     private String title;
-    
-    public EntranceFee(String c, String d, String t){
+
+    public EntranceFee(String c, String d, String t) {
         cost = c;
         des = d;
         title = t;
     }
-    
+
     /**
      * @return the cost
      */
@@ -62,5 +62,5 @@ public class EntranceFee {
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
 }

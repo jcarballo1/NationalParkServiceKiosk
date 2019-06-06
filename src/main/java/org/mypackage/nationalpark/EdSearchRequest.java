@@ -1,4 +1,5 @@
 package org.mypackage.nationalpark;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -81,7 +82,7 @@ public class EdSearchRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
-        jsonString = jsonString.replaceAll("\'","&#39");
+        jsonString = jsonString.replaceAll("\'", "&#39");
         parseLessonJSON();
     }
 
@@ -116,7 +117,7 @@ public class EdSearchRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
-        jsonString = jsonString.replaceAll("\'","&#39");
+        jsonString = jsonString.replaceAll("\'", "&#39");
         parsePeoplePlaceJSON("Person");
     }
 
@@ -151,7 +152,7 @@ public class EdSearchRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
-        jsonString = jsonString.replaceAll("\'","&#39");
+        jsonString = jsonString.replaceAll("\'", "&#39");
         parsePeoplePlaceJSON("Place");
     }
 
@@ -219,22 +220,22 @@ public class EdSearchRequest {
             if (good) {
                 imageURL = currObj.getString("url");
             }
-            
+
             try {
                 listing = subObj.getString("listingdescription");
             } catch (Exception e) {
             }
-            
+
             try {
                 title = subObj.getString("title");
             } catch (Exception e) {
             }
-            
+
             try {
                 url = subObj.getString("url");
             } catch (Exception e) {
             }
-            
+
             results.add(new EdSearchResult(imageURL, listing, title, url, key));
         }
     }

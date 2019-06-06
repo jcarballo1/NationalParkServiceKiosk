@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author jcarb
  */
 public class VCenterSearchResult {
+
     private String name;
     private String descrip;
     private String direct;
@@ -31,8 +32,8 @@ public class VCenterSearchResult {
     private String weather;
     private String regulationURL;
     private String type;
-    
-    public VCenterSearchResult(String n, String d, String di, String c, ArrayList<PhoneNumber> num, ArrayList<String> e, ArrayList<Address> a, ArrayList<Hours> h, String u, String ty){
+
+    public VCenterSearchResult(String n, String d, String di, String c, ArrayList<PhoneNumber> num, ArrayList<String> e, ArrayList<Address> a, ArrayList<Hours> h, String u, String ty) {
         name = n;
         descrip = d;
         direct = di;
@@ -52,11 +53,11 @@ public class VCenterSearchResult {
         weather = "";
         regulationURL = "";
         type = ty;
-        
+
     }
-    
+
     public VCenterSearchResult(String n, String d, String di, String c, ArrayList<PhoneNumber> num, ArrayList<String> e, ArrayList<Address> a, ArrayList<Hours> h, String u,
-            String wc, String ad, String t, String i, String s, String w, String f, String wea, String ru, String ty){
+            String wc, String ad, String t, String i, String s, String w, String f, String wea, String ru, String ty) {
         name = n;
         descrip = d;
         direct = di;
@@ -77,7 +78,7 @@ public class VCenterSearchResult {
         regulationURL = ru;
         type = ty;
     }
-    
+
     /**
      * @return the name
      */
