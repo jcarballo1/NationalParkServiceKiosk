@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jcarb
  */
-public class GenSearchServlet extends HttpServlet {
+public class VCServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,34 +38,44 @@ public class GenSearchServlet extends HttpServlet {
         try {
             String desig = request.getParameter("designation");
             String state = request.getParameter("state");
-            GenSearchRequest req = new GenSearchRequest();//Creating class Object
-            ArrayList<GeneralSearchResult> res = req.sendGetSingle(desig, state);
+            String keyword = request.getParameter("keyword");
+            String type = request.getParameter("type");
+            String[] keys = keyword.split(" ");
+            VCenterSearchRequest req = new VCenterSearchRequest();//Creating class Object
+            ArrayList<VCenterSearchResult> res = req.process(keys, desig, state, type);
 
             out.println("<ul class=\"alt\">");
             if (res.size() < 1) {
                 out.println("<li>No results matched your request. Please try again.<li>");
             } else {
                 for (int i = 0; i < res.size(); i++) {
-                    out.println("<li>" + res.get(i).getName() + "<br><br>");
+
+                    out.println("<li>Type: " + res.get(i).getType() + "<br><br>");
+                    out.println(res.get(i).getName() + "<br><br>");
                     out.println(res.get(i).getDescrip() + "<br><br>");
 
                     int j;
-                    if (res.get(i).getAdds().size() > 0) {
-                        for (j = 0; j < res.get(i).getAdds().size(); j++) {
-                            out.println(res.get(i).getAdds().get(j).getType() + ":");
-                            out.println(res.get(i).getAdds().get(j).getLine1());
-                            if (res.get(i).getAdds().get(j).getLine2() != "") {
-                                out.println(res.get(i).getAdds().get(j).getLine2());
+                    if (res.get(i).getAddies().size() > 0) {
+                        for (j = 0; j < res.get(i).getAddies().size(); j++) {
+                            out.println(res.get(i).getAddies().get(j).getType() + ":");
+                            out.println(res.get(i).getAddies().get(j).getLine1());
+                            if (res.get(i).getAddies().get(j).getLine2() != "") {
+                                out.println(res.get(i).getAddies().get(j).getLine2());
                             }
-                            if (res.get(i).getAdds().get(j).getLine3() != "") {
-                                out.println(res.get(i).getAdds().get(j).getLine3());
+                            if (res.get(i).getAddies().get(j).getLine3() != "") {
+                                out.println(res.get(i).getAddies().get(j).getLine3());
                             }
-                            out.println(res.get(i).getAdds().get(j).getCity() + ", " + res.get(i).getAdds().get(j).getState()
-                                    + " " + res.get(i).getAdds().get(j).getZip() + "<br>");
+                            out.println(res.get(i).getAddies().get(j).getCity() + ", " + res.get(i).getAddies().get(j).getState()
+                                    + " " + res.get(i).getAddies().get(j).getZip() + "<br>");
                         }
                     }
 
+                    if (!res.get(i).getDirect().equals("")) {
+                        out.println("<br>" + res.get(i).getDirect() + "<br>");
+                    }
+
                     if (res.get(i).getNumbers().size() > 0) {
+                        out.println("<br>");
                         for (j = 0; j < res.get(i).getNumbers().size(); j++) {
                             out.println(res.get(i).getNumbers().get(j).getType() + ":");
                             out.println(res.get(i).getNumbers().get(j).getNumber() + "<br>");
@@ -73,6 +83,7 @@ public class GenSearchServlet extends HttpServlet {
                     }
 
                     if (res.get(i).getEmails().size() > 0) {
+                        out.println("<br>");
                         for (j = 0; j < res.get(i).getEmails().size(); j++) {
                             if (res.get(i).getEmails().get(j) != "" && res.get(i).getEmails().get(j) != "0@0") {
                                 out.println(res.get(i).getEmails().get(j) + "<br>");
@@ -80,33 +91,42 @@ public class GenSearchServlet extends HttpServlet {
                         }
                     }
 
-                    if (res.get(i).getFees().size() > 0) {
-                        for (j = 0; j < res.get(i).getFees().size(); j++) {
+                    if (res.get(i).getType().equals("Campground")) {
+                        if (!res.get(i).getWheelchair().equals("")) {
                             out.println("<br>");
-                            if (res.get(i).getFees().get(j).getTitle() != "") {
-                                out.println(res.get(i).getFees().get(j).getTitle() + ":<br>");
-                            }
-                            if (res.get(i).getFees().get(j).getDes() != "") {
-                                out.println(res.get(i).getFees().get(j).getDes() + "<br>");
-                            }
-                            if (res.get(i).getFees().get(j).getCost() != "") {
-                                out.println("$" + res.get(i).getFees().get(j).getCost() + "<br>");
-                            }
+                            out.println(res.get(i).getWheelchair());
+                            out.println("<br>");
                         }
-                    }
 
-                    if (res.get(i).getPasses().size() > 0) {
-                        for (j = 0; j < res.get(i).getPasses().size(); j++) {
+                        if (!res.get(i).getAda().equals("")) {
                             out.println("<br>");
-                            if (res.get(i).getPasses().get(j).getTitle() != "") {
-                                out.println(res.get(i).getPasses().get(j).getTitle() + ":<br>");
-                            }
-                            if (res.get(i).getPasses().get(j).getDes() != "") {
-                                out.println(res.get(i).getPasses().get(j).getDes() + "<br>");
-                            }
-                            if (res.get(i).getPasses().get(j).getCost() != "") {
-                                out.println("$" + res.get(i).getPasses().get(j).getCost() + "<br>");
-                            }
+                            out.println(res.get(i).getAda());
+                            out.println("<br>");
+                        }
+
+                        out.println("<br>Amenities:");
+                        if (!res.get(i).getToilets().equals("")) {
+                            out.println("<br>Toilets: " + res.get(i).getToilets());
+                        }
+
+                        if (!res.get(i).getShowers().equals("")) {
+                            out.println("<br>Showers: " + res.get(i).getShowers());
+                        }
+
+                        if (!res.get(i).getInternet().equals("")) {
+                            out.println("<br>Internet: " + res.get(i).getInternet());
+                        }
+
+                        if (!res.get(i).getWater().equals("")) {
+                            out.println("<br>Potable Water: " + res.get(i).getWater());
+                        }
+
+                        if (!res.get(i).getWeather().equals("")) {
+                            out.println("<br><br>" + res.get(i).getWeather() + "<br>");
+                        }
+
+                        if (!res.get(i).getFees().equals("") && !res.get(i).getFees().equals("0")) {
+                            out.println("<br>" + res.get(i).getFees() + "<br>");
                         }
                     }
 
@@ -124,13 +144,16 @@ public class GenSearchServlet extends HttpServlet {
                         }
                     }
 
-                    if (res.get(i).getWeather() != "") {
-                        out.println("<br>Weather Info:");
-                        out.println("<br>" + res.get(i).getWeather());
+                    if (res.get(i).getType().equals("Campground")) {
+                        if (!res.get(i).getRegulationURL().equals("")) {
+                            out.println("<br>For regulations please visit:");
+                            out.println("<br>");
+                            out.println("<a href=\"" + res.get(i).getRegulationURL() + "\"> Official " + res.get(i).getName() + " Regulations Page</a><br>");
+                        }
                     }
 
-                    if (res.get(i).getUrl() != "") {
-                        out.println("<br><br>For information please visit:");
+                    if (!res.get(i).getUrl().equals("")) {
+                        out.println("<br>For information please visit:");
                         out.println("<br>");
                         out.println("<a href=\"" + res.get(i).getUrl() + "\"> Official " + res.get(i).getName() + " Page</a>");
                     }
@@ -158,7 +181,7 @@ public class GenSearchServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(GenSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VCServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -176,7 +199,7 @@ public class GenSearchServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(GenSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VCServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         version="3.1">
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>GenSearchServlet</servlet-name>
         <servlet-class>org.mypackage.nationalpark.GenSearchServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VCServlet</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.VCServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EdServlet</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.EdServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GenSearchServlet</servlet-name>
         <url-pattern>/GenSearchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VCServlet</servlet-name>
+        <url-pattern>/VCServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EdServlet</servlet-name>
+        <url-pattern>/EdServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

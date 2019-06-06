@@ -15,14 +15,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-    <head> 
-        <%
-            String desig = request.getParameter("designation");
-            String state = request.getParameter("state");
-            String key = request.getParameter("type");
-            EdSearchRequest req = new EdSearchRequest();//Creating class Object
-            ArrayList<EdSearchResult> res = req.process(desig, state, key);
-        %>
+    <head>
         <title>Education Central</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -698,48 +691,9 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <%
-                            out.println("<ul class=\"alt\">");
-                            if (res.size() < 1) {
-                                out.println("<li>No results matched your request. Please try again.<li>");
-                            } else {
-                                for (int i = 0; i < res.size(); i++) {
-                                    out.println("<li>Type: " + res.get(i).getType() + "<br><br>");
-                                    if (res.get(i).getType().equals("Lesson Plan")) {
-                                        if (!res.get(i).getTitle().equals("")) {
-                                            out.println(res.get(i).getTitle() + "<br><br>");
-                                        }
-                                        if (!res.get(i).getSubject().equals("")) {
-                                            out.println(res.get(i).getSubject() + "<br><br>");
-                                        }
-                                        if (!res.get(i).getObjective().equals("")) {
-                                            out.println(res.get(i).getObjective()+ "<br><br>");
-                                        }
-                                        if (!res.get(i).getUrl().equals("")) {
-                                            out.println("<a href=\"" + res.get(i).getUrl() + "\">Learn More Here</a>");
-                                        }
-                                    } else {
-                                        if (!res.get(i).getTitle().equals("")) {
-                                            out.println(res.get(i).getTitle() + "<br><br>");
-                                        }
-                                        if (!res.get(i).getListingDes().equals("")) {
-                                            out.println(res.get(i).getListingDes()+ "<br>");
-                                        }                                        
-                                        if (!res.get(i).getImageURL().equals("")) {
-                                            out.println("<br>" + "<img src=\"" + res.get(i).getImageURL() + "\" height=200><br>");
-                                        }
-                                        if (!res.get(i).getUrl().equals("")) {
-                                            out.println("<br><a href=\"" + res.get(i).getUrl() + "\">Learn More Here</a>");
-                                        }
-                                    }
-                                    out.println("</li>");
-                                }
-                            }
-                            out.println("</ul>");
-                        %>
+                        <jsp:include page="EdServlet"/>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
