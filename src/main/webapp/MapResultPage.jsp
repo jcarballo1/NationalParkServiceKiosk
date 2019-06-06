@@ -9,13 +9,14 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="org.mypackage.nationalpark.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8" import ="org.mypackage.nationalpark.EdSearchRequest" language="java"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import ="org.mypackage.nationalpark.MapRequest" language="java"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <title>Education Central</title>
+        <title>General Search</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -45,20 +46,20 @@
 
     <!-- Heading -->
     <div id="heading">
-        <h1>Education Central</h1>
+        <h1>Map Location</h1>
     </div>
 
     <!-- Main -->
     <section id="main" class="wrapper">
         <div class="inner">
             <header class="special">
-                <h2>Learn About Your Designation.</h2>
-                <p>Select your designation or state of choice below. <b>It may take a few seconds.</b></p>
+                <h2>See your designation on the map.</h2>
+                <p>Select your designation below. <b>It may take a few seconds.</b></p>
             </header>
             <div class="content">
-                <form name="General Search" action="EdResultPage.jsp">
+                <form name="General Search" action="MapServlet">
                     <div class="row">
-                        <div class="col-5">
+                        <div class="col-10">
                             <select name="designation" id="designation">
                                 <option value="">- All Designations -</option>
 
@@ -585,96 +586,6 @@
                             </select>
                         </div>
 
-                        <div class="col-3">
-                            <select name="state" id="state">
-                                <option value="">All States</option>
-
-                                <option value="al">Alabama</option>
-                                <option value="ak">Alaska</option>
-                                <option value="as">American Samoa</option>
-                                <option value="az">Arizona</option>
-                                <option value="ar">Arkansas</option>
-
-                                <option value="ca">California</option>
-                                <option value="co">Colorado</option>
-                                <option value="ct">Connecticut</option>
-
-                                <option value="de">Delaware</option>
-                                <option value="dc">District of Columbia</option>
-
-                                <option value="fl">Florida</option>
-
-                                <option value="ga">Georgia</option>
-                                <option value="gu">Guam</option>
-
-                                <option value="hi">Hawaii</option>
-
-                                <option value="id">Idaho</option>
-                                <option value="il">Illinois</option>
-                                <option value="in">Indiana</option>
-                                <option value="ia">Iowa</option>
-
-                                <option value="ks">Kansas</option>
-                                <option value="ky">Kentucky</option>
-
-                                <option value="la">Louisiana</option>
-
-                                <option value="me">Maine</option>
-                                <option value="md">Maryland</option>
-                                <option value="ma">Massachusetts</option>
-                                <option value="mi">Michigan</option>
-                                <option value="mn">Minnesota</option>
-                                <option value="ms">Mississippi</option>
-                                <option value="mo">Missouri</option>
-                                <option value="mt">Montana</option>
-                                <option value="ne">Nebraska</option>
-                                <option value="nv">Nevada</option>
-                                <option value="nh">New Hampshire</option>
-                                <option value="nj">New Jersey</option>
-                                <option value="nm">New Mexico</option>
-                                <option value="ny">New York</option>
-                                <option value="nc">North Carolina</option>
-                                <option value="nd">North Dakota</option>
-                                <option value="mp">Northern Mariana Islands</option>
-
-                                <option value="oh">Ohio</option>
-                                <option value="ok">Oklahoma</option>
-                                <option value="or">Oregon</option>
-
-                                <option value="pa">Pennsylvania</option>
-                                <option value="pr">Puerto Rico</option>
-
-                                <option value="ri">Rhode Island</option>
-
-                                <option value="sc">South Carolina</option>
-                                <option value="sd">South Dakota</option>
-
-                                <option value="tn">Tennessee</option>
-                                <option value="tx">Texas</option>
-
-                                <option value="ut">Utah</option>
-
-                                <option value="vt">Vermont</option>
-                                <option value="vi">Virgin Islands</option>
-                                <option value="va">Virginia</option>
-
-                                <option value="wa">Washington</option>
-                                <option value="wv">West Virginia</option>
-                                <option value="wi">Wisconsin</option>
-                                <option value="wy">Wyoming</option>
-                            </select>
-                        </div>
-
-                        <div class="col-2">
-                            <select name="type" id="type">
-                                <option value="">All Types</option>
-
-                                <option value="less">Lesson Plans</option>
-                                <option value="peop">People</option>
-                                <option value="plac">Place</option>
-                            </select>
-                        </div>
-
                         <div class="col-2">
                             <input type="submit" value="Search" />
                         </div>
@@ -689,9 +600,20 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <jsp:include page="EdServlet"/>
+                        <div id="googleMap" style="width:100%;height:400px;"></div>
+
+                        <script>
+                            function myMap() {
+                                var mapProp = {
+                                    center: new google.maps.LatLng(${latitude}, ${longitude}),
+                                    zoom: 5,
+                                };
+                                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                            }
+                        </script>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>

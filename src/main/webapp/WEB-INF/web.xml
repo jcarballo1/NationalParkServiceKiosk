@@ -16,6 +16,10 @@
         <servlet-name>EdServlet</servlet-name>
         <servlet-class>org.mypackage.nationalpark.EdServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MapServlet</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.MapServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GenSearchServlet</servlet-name>
         <url-pattern>/GenSearchServlet</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>EdServlet</servlet-name>
         <url-pattern>/EdServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MapServlet</servlet-name>
+        <url-pattern>/MapServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
