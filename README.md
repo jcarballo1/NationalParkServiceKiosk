@@ -1,1 +1,5 @@
 # National Park Info Kiosk
+
+Website can be accessed [here](https://nationalparkservicekiosk.herokuapp.com/).
+
+Created by Jennifer Carballo, the National Park Service Kiosk was built as part of Capital One's Software Engineering Summit application for the Summer of 2019. It turned out pretty good, despite being Jennifer's first web application development.
