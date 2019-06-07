@@ -71,7 +71,7 @@
     </nav>
 
     <!-- Heading -->
-    <div id="heading">
+    <div id="heading" style="background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url(images/Picture.jpg); background-position: bottom">
         <h1>Designation Gallery</h1>
     </div>
 
@@ -642,179 +642,180 @@
                     </div>
                 </form>
 
-                <div class="row">
-                    <div class="col-12">
-                        <style>
-                            * {box-sizing:border-box}
 
-                            /* Slideshow container */
-                            .slideshow-container {
-                                max-width: 1000px;
-                                position: relative;
-                                margin: auto;
-                            }
 
-                            /* Hide the images by default */
-                            .mySlides {
-                                display: none;
-                            }
 
-                            /* Next & previous buttons */
-                            .prev, .next {
-                                cursor: pointer;
-                                position: absolute;
-                                top: 50%;
-                                width: auto;
-                                margin-top: -22px;
-                                padding: 16px;
-                                color: white;
-                                font-weight: bold;
-                                font-size: 18px;
-                                transition: 0.6s ease;
-                                border-radius: 0 3px 3px 0;
-                                user-select: none;
-                            }
+                <style>
+                    * {box-sizing:border-box}
 
-                            /* Position the "next button" to the right */
-                            .next {
-                                right: 0;
-                                border-radius: 3px 0 0 3px;
-                            }
+                    /* Slideshow container */
+                    .slideshow-container {
+                        max-width: 1000px;
+                        position: relative;
+                        margin: auto;
+                    }
 
-                            /* On hover, add a black background color with a little bit see-through */
-                            .prev:hover, .next:hover {
-                                background-color: rgba(0,0,0,0.8);
-                            }
+                    /* Hide the images by default */
+                    .mySlides {
+                        display: none;
+                    }
 
-                            /* Caption text */
-                            .text {
-                                color: #f2f2f2;
-                                font-size: 15px;
-                                padding: 8px 12px;
-                                position: absolute;
-                                bottom: 8px;
-                                width: 100%;
-                                text-align: center;
-                            }
+                    /* Next & previous buttons */
+                    .prev, .next {
+                        cursor: pointer;
+                        position: absolute;
+                        top: 50%;
+                        width: auto;
+                        margin-top: -22px;
+                        padding: 16px;
+                        color: white;
+                        font-weight: bold;
+                        font-size: 18px;
+                        transition: 0.6s ease;
+                        border-radius: 0 3px 3px 0;
+                        user-select: none;
+                    }
 
-                            /* Number text (1/3 etc) */
-                            .numbertext {
-                                color: #f2f2f2;
-                                font-size: 12px;
-                                padding: 8px 12px;
-                                position: absolute;
-                                top: 0;
-                            }
+                    /* Position the "next button" to the right */
+                    .next {
+                        right: 0;
+                        border-radius: 3px 0 0 3px;
+                    }
 
-                            /* The dots/bullets/indicators */
-                            .dot {
-                                cursor: pointer;
-                                height: 15px;
-                                width: 15px;
-                                margin: 0 2px;
-                                background-color: #bbb;
-                                border-radius: 50%;
-                                display: inline-block;
-                                transition: background-color 0.6s ease;
-                            }
+                    /* On hover, add a black background color with a little bit see-through */
+                    .prev:hover, .next:hover {
+                        background-color: rgba(0,0,0,0.8);
+                    }
 
-                            .active, .dot:hover {
-                                background-color: #717171;
-                            }
+                    /* Caption text */
+                    .text {
+                        color: #f2f2f2;
+                        font-size: 15px;
+                        padding: 8px 12px;
+                        position: absolute;
+                        bottom: 8px;
+                        width: 100%;
+                        text-align: center;
+                    }
 
-                            /* Fading animation */
-                            .fade {
-                                -webkit-animation-name: fade;
-                                -webkit-animation-duration: 1.5s;
-                                animation-name: fade;
-                                animation-duration: 1.5s;
-                            }
+                    /* Number text (1/3 etc) */
+                    .numbertext {
+                        color: #f2f2f2;
+                        font-size: 12px;
+                        padding: 8px 12px;
+                        position: absolute;
+                        top: 0;
+                    }
 
-                            @-webkit-keyframes fade {
-                                from {opacity: .4} 
-                                to {opacity: 1}
-                            }
+                    /* The dots/bullets/indicators */
+                    .dot {
+                        cursor: pointer;
+                        height: 15px;
+                        width: 15px;
+                        margin: 0 2px;
+                        background-color: #bbb;
+                        border-radius: 50%;
+                        display: inline-block;
+                        transition: background-color 0.6s ease;
+                    }
 
-                            @keyframes fade {
-                                from {opacity: .4} 
-                                to {opacity: 1}
-                            }
+                    .active, .dot:hover {
+                        background-color: #717171;
+                    }
 
-                        </style>
+                    /* Fading animation */
+                    .fade {
+                        -webkit-animation-name: fade;
+                        -webkit-animation-duration: 1.5s;
+                        animation-name: fade;
+                        animation-duration: 1.5s;
+                    }
 
-                        <jsp:include page="GalleryServlet" />
+                    @-webkit-keyframes fade {
+                        from {opacity: .4} 
+                        to {opacity: 1}
+                    }
 
-                        <script>
-                            var slideIndex = 1;
-                            showSlides(slideIndex);
+                    @keyframes fade {
+                        from {opacity: .4} 
+                        to {opacity: 1}
+                    }
 
-                            // Next/previous controls
-                            function plusSlides(n) {
-                                showSlides(slideIndex += n);
-                            }
+                </style>
 
-                            // Thumbnail image controls
-                            function currentSlide(n) {
-                                showSlides(slideIndex = n);
-                            }
+                <jsp:include page="GalleryServlet" />
 
-                            function showSlides(n) {
-                                var i;
-                                var slides = document.getElementsByClassName("mySlides");
-                                var dots = document.getElementsByClassName("dot");
-                                if (n > slides.length) {
-                                    slideIndex = 1
-                                }
-                                if (n < 1) {
-                                    slideIndex = slides.length
-                                }
-                                for (i = 0; i < slides.length; i++) {
-                                    slides[i].style.display = "none";
-                                }
-                                for (i = 0; i < dots.length; i++) {
-                                    dots[i].className = dots[i].className.replace(" active", "");
-                                }
-                                slides[slideIndex - 1].style.display = "block";
-                                dots[slideIndex - 1].className += " active";
-                            }
-                        </script>
-                    </div>
-                </div>
+                <script>
+                    var slideIndex = 1;
+                    showSlides(slideIndex);
+
+                    // Next/previous controls
+                    function plusSlides(n) {
+                        showSlides(slideIndex += n);
+                    }
+
+                    // Thumbnail image controls
+                    function currentSlide(n) {
+                        showSlides(slideIndex = n);
+                    }
+
+                    function showSlides(n) {
+                        var i;
+                        var slides = document.getElementsByClassName("mySlides");
+                        var dots = document.getElementsByClassName("dot");
+                        if (n > slides.length) {
+                            slideIndex = 1
+                        }
+                        if (n < 1) {
+                            slideIndex = slides.length
+                        }
+                        for (i = 0; i < slides.length; i++) {
+                            slides[i].style.display = "none";
+                        }
+                        for (i = 0; i < dots.length; i++) {
+                            dots[i].className = dots[i].className.replace(" active", "");
+                        }
+                        slides[slideIndex - 1].style.display = "block";
+                        dots[slideIndex - 1].className += " active";
+                    }
+                </script>
             </div>
         </div>
-    </section>
+    </div>
+</div>
+</section>
 
-    <!-- Footer -->
-    <footer id="footer">
-        <div class="inner">
-            <div class="content">
-                <section>
-                    <h3>About this Web Application</h3>
-                    <p>Created by Jennifer Carballo, the National Park Service Kiosk was built as part of Capital One's Software Engineering Summit application for the Summer of 2019. It turned out pretty good, despite being Jennifer's first web application development.</p>
-                </section>
+<!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <div class="content">
+            <section>
+                <h3>About this Web Application</h3>
+                <p>Created by Jennifer Carballo, the National Park Service Kiosk was built as part of Capital One's Software Engineering Summit application for the Summer of 2019. It turned out pretty good, despite being Jennifer's first web application development.</p>
+            </section>
 
-                <section></section>
+            <section></section>
 
-                <section>
-                    <h4>View The Code</h4>
-                    <ul class="plain">
-                        <li><a href="https://github.com/jcarballo1/NationalParkServiceKiosk"><i class="icon fa-github">&nbsp;</i>Github</a></li>
-                    </ul>
-                </section>
-            </div>
-
-            <div class="copyright">
-                &copy; 2019 Jennifer Carballo All rights reserved. Video <a href="https://www.youtube.com/watch?v=HEZ3WyAUPZM">Amazing Places on Our Planet</a>.
-            </div>
+            <section>
+                <h4>View The Code</h4>
+                <ul class="plain">
+                    <li><a href="https://github.com/jcarballo1/NationalParkServiceKiosk"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+                </ul>
+            </section>
         </div>
-    </footer>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+        <div class="copyright">
+            &copy; 2019 Jennifer Carballo All rights reserved. Video <a href="https://www.youtube.com/watch?v=HEZ3WyAUPZM">Amazing Places on Our Planet</a>.
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
 
 </body>
 </html>

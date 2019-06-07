@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +39,14 @@ public class GalleryServlet extends HttpServlet {
             String desig = request.getParameter("designation");
             GalleryRequest req = new GalleryRequest();
             ArrayList<Image> result = req.sendGet(desig);
-
+            out.println("<div class=\"row\">");
+            out.println("<div class=\"col-12\">");        
+            out.println("<h3>" + result.get(0).getCred() + "</h3>");
+            out.println("</div>");
+            out.println("</div>");
+            out.println("<div class=\"row\">");
+            out.println("<div class=\"col-12\">");
+            
             out.println("<!-- Slideshow -->");
             out.println("<div class=\"slideshow-container\">");
             int total = result.size();

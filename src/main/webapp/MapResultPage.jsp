@@ -71,7 +71,7 @@
     </nav>
 
     <!-- Heading -->
-    <div id="heading">
+    <div id="heading" style="background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url(images/Road.jpg); background-position: bottom">
         <h1>Map Location</h1>
     </div>
 
@@ -641,6 +641,12 @@
                         </div>
                     </div>
                 </form>
+                
+                <div class="row">
+                    <div class="col-12">
+                        <h3>${name}</h3>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-12">

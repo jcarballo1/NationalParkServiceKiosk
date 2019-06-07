@@ -38,6 +38,7 @@ public class MapServlet extends HttpServlet {
             String desig = request.getParameter("designation");
             MapRequest req = new MapRequest();
             MapResult result = req.sendGet(desig);
+            request.setAttribute("name", result.getName());
             request.setAttribute("longitude", result.getLongitude());
             request.setAttribute("latitude", result.getLatitude());
             RequestDispatcher dispatcher = request.getRequestDispatcher("MapResultPage.jsp");

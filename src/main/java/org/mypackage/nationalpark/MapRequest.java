@@ -79,13 +79,18 @@ public class MapRequest {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");
         JSONObject subObj = array.getJSONObject(0);
+        String name = "";
         String coords = "";
+        try {
+            name = subObj.getString("fullName");
+        } catch (Exception e) {
+        }
 
         try {
             coords = subObj.getString("latLong");
         } catch (Exception e) {
         }
 
-        req = new MapResult(coords);
+        req = new MapResult(name, coords);
     }
 }

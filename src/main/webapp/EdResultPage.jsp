@@ -70,7 +70,7 @@
     </nav>
 
     <!-- Heading -->
-    <div id="heading">
+    <div id="heading" style="background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url(images/Education.jpg); background-position: bottom">
         <h1>Education Central</h1>
     </div>
 

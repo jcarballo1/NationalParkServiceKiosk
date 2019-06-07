@@ -2057,15 +2057,15 @@ body.is-preload #banner:before {
 
 /* CTA */
 #cta {
-        background-color: #FFA500; color: #FFA500;
-        background-attachment: fixed;
-        background-image: linear-gradient(rgba(255, 165, 0, 0.25), rgba(255, 165, 0, 0.25)), url(../../images/Haleakala.jpg);
-        background-position: bottom;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        text-align: center;
-        z-index: 1;
+    background-color: #FFA500; color: #FFA500;
+    background-attachment: fixed;
+    background-image: linear-gradient(rgba(255, 165, 0, 0.25), rgba(255, 165, 0, 0.25)), url(../../images/Haleakala.jpg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    text-align: center;
+    z-index: 1;
 }
 #cta input, #cta select, #cta textarea {
     color: #ffffff; }
@@ -2480,6 +2480,7 @@ body:before {
 @media screen and (max-width: 480px) {
     #header {
         min-width: 320px; } }
+
 /* Heading */
 #heading {
     -ms-flex-align: center;
@@ -2659,6 +2660,49 @@ body:before {
 @media screen and (max-width: 980px) {
     #heading {
         padding: 2rem; } }
+
+#heading-visitor {
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    background-color: #111111;
+    color: rgba(255, 255, 255, 0.5);
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    background-image: url(images/Campground.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    border-top: 0;
+    display: -ms-flexbox;
+    height: 15rem !important;
+    min-height: 15rem;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%; }
+#heading-visitor:before{
+    background: linear-gradient(135deg, #FFA500 0%, #111111 74%);
+    content: ' ';
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
 
 /* Main */
 #main .content {

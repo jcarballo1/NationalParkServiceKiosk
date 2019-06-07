@@ -74,10 +74,17 @@ public class GalleryRequest {
     public void parseJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");
+        String name = "";
         String url = "";
         String cap = "";
 
         JSONObject obj = array.getJSONObject(0);
+
+        try {
+            name = obj.getString("fullName");
+        } catch (Exception e) {
+        }
+
         JSONArray subArray = obj.getJSONArray("images");
         for (int i = 0; i < subArray.length(); i++) {
             JSONObject subObj = subArray.getJSONObject(i);
@@ -91,7 +98,7 @@ public class GalleryRequest {
             } catch (Exception e) {
             }
 
-            images.add(new Image(url, cap));
+            images.add(new Image(url, cap, name));
         }
     }
 }
