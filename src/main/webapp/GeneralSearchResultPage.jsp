@@ -14,13 +14,38 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <title>General Search</title>
+        <title>General Park Information</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <link rel="stylesheet" href="assets/css/main.css" />
+        <style>
+            #myBtn {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+                z-index: 99;
+                border: 0;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: 600;
+                height: 3.25rem;
+                line-height: 3.25rem;
+                padding: 0 1.75rem;
+                text-align: center;
+                text-decoration: none;
+                white-space: nowrap;
+                background-color: transparent;
+            }
+
+            #myBtn:hover {
+                box-shadow: inset 0 0 0 1px #eeaf37;
+                color: #eeaf37 !important;
+            }
+        </style>
     </head>
 
     <body>
@@ -36,7 +61,7 @@
     <nav id="menu">
         <ul class="links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="GeneralSearch.html">General Search</a></li>
+            <li><a href="GeneralSearch.html">General Park Information</a></li>
             <li><a href="VisitorCenter.html">Visitor Centers</a></li>
             <li><a href="CurrentEvents.html">Current Events</a></li>
             <li><a href="Education.html">Education</a></li>
@@ -47,7 +72,7 @@
 
     <!-- Heading -->
     <div id="heading">
-        <h1>General Park Info Search</h1>
+        <h1>General Park Information</h1>
     </div>
 
     <!-- Main -->
@@ -57,6 +82,30 @@
                 <h2>Get Locations, Operating Hours, & More.</h2>
                 <p>Select your designation or state of choice below. <b>It may take a few seconds.</b></p>
             </header>
+
+            <script>
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function () {
+                    scrollFunction()
+                };
+
+                function scrollFunction() {
+                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                        document.getElementById("myBtn").style.display = "block";
+                    } else {
+                        document.getElementById("myBtn").style.display = "none";
+                    }
+                }
+
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+            </script>
+
+            <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
+
             <div class="content">
                 <form name="General Search" action="GeneralSearchResultPage.jsp">
                     <div class="row">

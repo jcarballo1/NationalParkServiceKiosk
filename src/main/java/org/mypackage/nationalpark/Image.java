@@ -20,8 +20,8 @@ public class Image {
         caption = cap;
         cred = cre;
     }
-    
-    public Image(String u, String cap){
+
+    public Image(String u, String cap) {
         url = u;
         caption = cap;
         cred = "";

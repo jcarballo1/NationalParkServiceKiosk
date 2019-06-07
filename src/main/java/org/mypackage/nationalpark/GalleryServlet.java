@@ -38,13 +38,13 @@ public class GalleryServlet extends HttpServlet {
             String desig = request.getParameter("designation");
             GalleryRequest req = new GalleryRequest();
             ArrayList<Image> result = req.sendGet(desig);
-            
+
             out.println("<!-- Slideshow -->");
             out.println("<div class=\"slideshow-container\">");
             int total = result.size();
             for (int i = 0; i < result.size(); i++) {
                 out.println("<div class=\"mySlides fade\">");
-                out.println("<div class=\"numbertext\">" + (i+1) + "/" + total + "</div>");
+                out.println("<div class=\"numbertext\">" + (i + 1) + "/" + total + "</div>");
                 out.println("<img src=\"" + result.get(i).getUrl() + "\" style=\"width:100%\">");
                 out.println("<div class=\"text\">" + result.get(i).getCaption() + "</div>");
                 out.println("</div>");
@@ -55,7 +55,7 @@ public class GalleryServlet extends HttpServlet {
             out.println("<br>");
             out.println("<div style=\"text-align:center\">");
             for (int j = 0; j < result.size(); j++) {
-                out.println("<span class=\"dot\" onclick=\"currentSlide(" + (j+1) + ")\"></span>");
+                out.println("<span class=\"dot\" onclick=\"currentSlide(" + (j + 1) + ")\"></span>");
             }
             out.println("</div>");
         } finally {

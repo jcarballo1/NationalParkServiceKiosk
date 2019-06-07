@@ -1,6 +1,5 @@
 package org.mypackage.nationalpark;
 
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -91,7 +90,7 @@ public class GalleryRequest {
                 cap = subObj.getString("caption");
             } catch (Exception e) {
             }
-            
+
             images.add(new Image(url, cap));
         }
     }
