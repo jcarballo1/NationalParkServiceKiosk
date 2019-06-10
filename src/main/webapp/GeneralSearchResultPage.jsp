@@ -21,31 +21,6 @@
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <link rel="stylesheet" href="assets/css/main.css" />
-        <style>
-            #myBtn {
-                display: none;
-                position: fixed;
-                bottom: 20px;
-                right: 30px;
-                z-index: 99;
-                border: 0;
-                border-radius: 4px;
-                cursor: pointer;
-                font-weight: 600;
-                height: 3.25rem;
-                line-height: 3.25rem;
-                padding: 0 1.75rem;
-                text-align: center;
-                text-decoration: none;
-                white-space: nowrap;
-                background-color: transparent;
-            }
-
-            #myBtn:hover {
-                box-shadow: inset 0 0 0 1px #eeaf37;
-                color: #eeaf37 !important;
-            }
-        </style>
     </head>
 
     <body>
@@ -730,7 +705,13 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <jsp:include page="GenSearchServlet" />
+                        <%
+                            ArrayList<GeneralSearchResult> res = (ArrayList<GeneralSearchResult>) request.getAttribute("res");
+                            request.setAttribute("res", res);
+                        %>
+                        <jsp:include page="GenSearchServletPost">
+                            <jsp:param name="result" value="<%=request.getAttribute("res")%>"/>
+                        </jsp:include>
                     </div>
                 </div>
 

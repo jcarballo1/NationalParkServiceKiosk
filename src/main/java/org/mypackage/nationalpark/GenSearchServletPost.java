@@ -1,16 +1,14 @@
-package org.mypackage.nationalpark;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package org.mypackage.nationalpark;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jcarb
  */
-public class GenSearchServlet extends HttpServlet {
+public class GenSearchServletPost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,15 +30,11 @@ public class GenSearchServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, Exception {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String desig = request.getParameter("designation");
-            String state = request.getParameter("state");
-            GenSearchRequest req = new GenSearchRequest();//Creating class Object
-            ArrayList<GeneralSearchResult> res = req.sendGetSingle(desig, state);
-
+            ArrayList<GeneralSearchResult> res = (ArrayList<GeneralSearchResult>)request.getAttribute("res");
             out.println("<ul class=\"alt\">");
             if (res.size() < 1) {
                 out.println("<li>No results matched your request. Please try again.<li>");
@@ -49,8 +43,8 @@ public class GenSearchServlet extends HttpServlet {
                     out.println("<li>" + res.get(i).getName() + "<br><br>");
                     out.println(res.get(i).getDescrip() + "<br><br>");
                     if (res.get(i).getImages().size() > 0) {
-                            out.println("<img src=\"" + res.get(i).getImages().get(i).getUrl()+ "\" height=200><br><br>");
-                        }
+                        out.println("<img src=\"" + res.get(i).getImages().get(i).getUrl() + "\" height=200><br><br>");
+                    }
                     int j;
                     if (res.get(i).getAdds().size() > 0) {
                         for (j = 0; j < res.get(i).getAdds().size(); j++) {
@@ -142,6 +136,7 @@ public class GenSearchServlet extends HttpServlet {
             }
             out.println("</ul>");
         } finally {
+            
         }
     }
 
@@ -157,11 +152,7 @@ public class GenSearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(GenSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -175,11 +166,7 @@ public class GenSearchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(GenSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

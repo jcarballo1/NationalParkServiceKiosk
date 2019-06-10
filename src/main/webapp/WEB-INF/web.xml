@@ -24,6 +24,10 @@
         <servlet-name>GalleryServlet</servlet-name>
         <servlet-class>org.mypackage.nationalpark.GalleryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GenSearchServletPost</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.GenSearchServletPost</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GenSearchServlet</servlet-name>
         <url-pattern>/GenSearchServlet</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>GalleryServlet</servlet-name>
         <url-pattern>/GalleryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GenSearchServletPost</servlet-name>
+        <url-pattern>/GenSearchServletPost</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
