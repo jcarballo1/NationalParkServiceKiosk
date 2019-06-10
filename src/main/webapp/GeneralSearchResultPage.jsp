@@ -82,7 +82,7 @@
             <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
 
             <div class="content">
-                <form name="General Search" action="GeneralSearchResultPage.jsp">
+                <form name="General Search" action="GenSearchServletPre">
                     <div class="row">
                         <div class="col-6">
                             <select name="designation" id="designation">
