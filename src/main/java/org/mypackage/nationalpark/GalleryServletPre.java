@@ -36,7 +36,7 @@ public class GalleryServletPre extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String desig = request.getParameter("designation");
+            String desig = request.getParameter("destination");
             GalleryRequest req = new GalleryRequest();
             ArrayList<Image> result = req.sendGet(desig);
             request.setAttribute("res", result);

@@ -41,7 +41,7 @@
             <li><a href="CurrentEvents.html">Current Events</a></li>
             <li><a href="Education.html">Education</a></li>
             <li><a href="Map.html">Map</a></li>
-            <li><a href="Gallery.html">Designation Gallery</a></li>
+            <li><a href="Gallery.html">Destination Gallery</a></li>
         </ul>
     </nav>
 
@@ -55,7 +55,7 @@
         <div class="inner">
             <header class="special">
                 <h2>Get Visitor Center Locations, Operating Hours, & More.</h2>
-                <p>Search keywords or select your designation or state of choice below. <b>It may take a few seconds.</b></p>
+                <p>Search keywords or select your destination or state of choice below. <b>It may take a few seconds.</b></p>
             </header>
 
             <script>
@@ -93,8 +93,8 @@
 
                     <div class="row">
                         <div class="col-5">
-                            <select name="designation" id="designation">
-                                <option value="">- All Designations -</option>
+                            <select name="destination" id="destination">
+                                <option value="">- All Destinations -</option>
 
                                 <optgroup label="A">
                                     <option value="abli">Abraham Lincoln Birthplace National Historical Park</option>

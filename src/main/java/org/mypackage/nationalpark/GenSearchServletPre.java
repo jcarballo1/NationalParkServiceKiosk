@@ -37,7 +37,7 @@ public class GenSearchServletPre extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String desig = request.getParameter("designation");
+            String desig = request.getParameter("destination");
             String state = request.getParameter("state");
             GenSearchRequest req = new GenSearchRequest();//Creating class Object
             ArrayList<GeneralSearchResult> res = req.sendGetSingle(desig, state);

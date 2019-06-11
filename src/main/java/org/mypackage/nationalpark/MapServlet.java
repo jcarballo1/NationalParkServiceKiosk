@@ -35,7 +35,7 @@ public class MapServlet extends HttpServlet {
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String desig = request.getParameter("designation");
+            String desig = request.getParameter("destination");
             MapRequest req = new MapRequest();
             MapResult result = req.sendGet(desig);
             request.setAttribute("name", result.getName());

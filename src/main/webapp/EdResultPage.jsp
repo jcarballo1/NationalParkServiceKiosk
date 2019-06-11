@@ -40,7 +40,7 @@
             <li><a href="CurrentEvents.html">Current Events</a></li>
             <li><a href="Education.html">Education</a></li>
             <li><a href="Map.html">Map</a></li>
-            <li><a href="Gallery.html">Designation Gallery</a></li>
+            <li><a href="Gallery.html">Destination Gallery</a></li>
         </ul>
     </nav>
 
@@ -53,8 +53,8 @@
     <section id="main" class="wrapper">
         <div class="inner">
             <header class="special">
-                <h2>Learn About Your Designation.</h2>
-                <p>Select your designation or state of choice below. <b>It may take a few seconds.</b></p>
+                <h2>Learn About Your Destination.</h2>
+                <p>Select your destination or state of choice below. <b>It may take a few seconds.</b></p>
             </header>
 
             <script>
@@ -84,8 +84,8 @@
                 <form name="General Search" action="EdServletPre">
                     <div class="row">
                         <div class="col-5">
-                            <select name="designation" id="designation">
-                                <option value="">- All Designations -</option>
+                            <select name="destination" id="destination">
+                                <option value="">- All Destinations -</option>
 
                                 <optgroup label="A">
                                     <option value="abli">Abraham Lincoln Birthplace National Historical Park</option>
