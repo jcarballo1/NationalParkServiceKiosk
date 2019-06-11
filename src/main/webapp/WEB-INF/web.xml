@@ -5,56 +5,88 @@
         <servlet-class>org.mypackage.nationalpark.GenSearchServletPre</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>VCServlet</servlet-name>
-        <servlet-class>org.mypackage.nationalpark.VCServlet</servlet-class>
+        <servlet-name>VCServletPre</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.VCServletPre</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CEServlet</servlet-name>
-        <servlet-class>org.mypackage.nationalpark.CEServlet</servlet-class>
+        <servlet-name>CEServletPre</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.CEServletPre</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EdServlet</servlet-name>
-        <servlet-class>org.mypackage.nationalpark.EdServlet</servlet-class>
+        <servlet-name>EdServletPre</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.EdServletPre</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MapServlet</servlet-name>
         <servlet-class>org.mypackage.nationalpark.MapServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GalleryServlet</servlet-name>
-        <servlet-class>org.mypackage.nationalpark.GalleryServlet</servlet-class>
+        <servlet-name>GalleryServletPre</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.GalleryServletPre</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GenSearchServletPost</servlet-name>
         <servlet-class>org.mypackage.nationalpark.GenSearchServletPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VCServletPost</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.VCServletPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CEServletPost</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.CEServletPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EdServletPost</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.EdServletPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GalleryServletPost</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.GalleryServletPost</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GenSearchServletPre</servlet-name>
         <url-pattern>/GenSearchServletPre</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>VCServlet</servlet-name>
-        <url-pattern>/VCServlet</url-pattern>
+        <servlet-name>VCServletPre</servlet-name>
+        <url-pattern>/VCServletPre</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CEServlet</servlet-name>
-        <url-pattern>/CEServlet</url-pattern>
+        <servlet-name>CEServletPre</servlet-name>
+        <url-pattern>/CEServletPre</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EdServlet</servlet-name>
-        <url-pattern>/EdServlet</url-pattern>
+        <servlet-name>EdServletPre</servlet-name>
+        <url-pattern>/EdServletPre</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MapServlet</servlet-name>
         <url-pattern>/MapServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GalleryServlet</servlet-name>
-        <url-pattern>/GalleryServlet</url-pattern>
+        <servlet-name>GalleryServletPre</servlet-name>
+        <url-pattern>/GalleryServletPre</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GenSearchServletPost</servlet-name>
         <url-pattern>/GenSearchServletPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VCServletPost</servlet-name>
+        <url-pattern>/VCServletPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CEServletPost</servlet-name>
+        <url-pattern>/CEServletPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EdServletPost</servlet-name>
+        <url-pattern>/EdServletPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GalleryServletPost</servlet-name>
+        <url-pattern>/GalleryServletPost</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

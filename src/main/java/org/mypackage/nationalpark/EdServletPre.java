@@ -11,6 +11,7 @@ import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jcarb
  */
-public class EdServlet extends HttpServlet {
+public class EdServletPre extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,44 +42,9 @@ public class EdServlet extends HttpServlet {
             String key = request.getParameter("type");
             EdSearchRequest req = new EdSearchRequest();//Creating class Object
             ArrayList<EdSearchResult> res = req.process(desig, state, key);
-
-            out.println("<ul class=\"alt\">");
-            if (res.size() < 1) {
-                out.println("<li>No results matched your request. Please try again.<li>");
-            } else {
-                for (int i = 0; i < res.size(); i++) {
-                    out.println("<li>Type: " + res.get(i).getType() + "<br><br>");
-                    if (res.get(i).getType().equals("Lesson Plan")) {
-                        if (!res.get(i).getTitle().equals("")) {
-                            out.println(res.get(i).getTitle() + "<br><br>");
-                        }
-                        if (!res.get(i).getSubject().equals("")) {
-                            out.println(res.get(i).getSubject() + "<br><br>");
-                        }
-                        if (!res.get(i).getObjective().equals("")) {
-                            out.println(res.get(i).getObjective() + "<br><br>");
-                        }
-                        if (!res.get(i).getUrl().equals("")) {
-                            out.println("<a href=\"" + res.get(i).getUrl() + "\">Learn More Here</a>");
-                        }
-                    } else {
-                        if (!res.get(i).getTitle().equals("")) {
-                            out.println(res.get(i).getTitle() + "<br><br>");
-                        }
-                        if (!res.get(i).getListingDes().equals("")) {
-                            out.println(res.get(i).getListingDes() + "<br>");
-                        }
-                        if (!res.get(i).getImageURL().equals("")) {
-                            out.println("<br>" + "<img src=\"" + res.get(i).getImageURL() + "\" height=200><br>");
-                        }
-                        if (!res.get(i).getUrl().equals("")) {
-                            out.println("<br><a href=\"" + res.get(i).getUrl() + "\">Learn More Here</a>");
-                        }
-                    }
-                    out.println("</li>");
-                }
-            }
-            out.println("</ul>");
+            request.setAttribute("res", res);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("EdResultPage.jsp");
+            dispatcher.forward(request, response);
         } finally {
         }
     }
@@ -98,7 +64,7 @@ public class EdServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(EdServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EdServletPre.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -116,7 +82,7 @@ public class EdServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(EdServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EdServletPre.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

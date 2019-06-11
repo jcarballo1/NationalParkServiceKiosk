@@ -82,7 +82,7 @@
             <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
 
             <div class="content">
-                <form name="General Search" action="VCenterResultPage.jsp">
+                <form name="General Search" action="VCServletPre">
                     <div style="margin-bottom: 30px">
                         <div class="row">
                             <div class="col-12">
@@ -722,7 +722,13 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <jsp:include page="VCServlet" />
+                        <%
+                            ArrayList<VCenterSearchResult> res = (ArrayList<VCenterSearchResult>) request.getAttribute("res");
+                            request.setAttribute("res", res);
+                        %>
+                        <jsp:include page="VCServletPost">
+                            <jsp:param name="result" value="<%=request.getAttribute(\"res\")%>"/> 
+                        </jsp:include>
                     </div>
                 </div>
 

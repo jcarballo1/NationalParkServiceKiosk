@@ -710,7 +710,7 @@
                             request.setAttribute("res", res);
                         %>
                         <jsp:include page="GenSearchServletPost">
-                            <jsp:param name="result" value="<%=request.getAttribute("res")%>"/>
+                            <jsp:param name="res" value="<%=request.getAttribute(\"res\")%>"/> 
                         </jsp:include>
                     </div>
                 </div>

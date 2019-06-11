@@ -8,10 +8,7 @@ package org.mypackage.nationalpark;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,8 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jcarb
  */
-@WebServlet(name = "CEServlet", urlPatterns = {"/CEServlet"})
-public class CEServlet extends HttpServlet {
+public class CEServletPost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,18 +29,11 @@ public class CEServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, Exception {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String desig = request.getParameter("designation");
-            String state = request.getParameter("state");
-            String keyword = request.getParameter("keyword");
-            String type = request.getParameter("type");
-            String[] keys = keyword.split(" ");
-            CESearchRequest req = new CESearchRequest();//Creating class Object
-            ArrayList<CESearchResult> res = req.process(keys, desig, state, type);
-
+            ArrayList<CESearchResult> res = (ArrayList<CESearchResult>) request.getAttribute("res");
             out.println("<ul class=\"alt\">");
             if (res.size() < 1) {
                 out.println("<li>No results matched your request. Please try again.<li>");
@@ -153,6 +142,7 @@ public class CEServlet extends HttpServlet {
             }
             out.println("</ul>");
         } finally {
+
         }
     }
 
@@ -168,11 +158,7 @@ public class CEServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(CEServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -186,11 +172,7 @@ public class CEServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(CEServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

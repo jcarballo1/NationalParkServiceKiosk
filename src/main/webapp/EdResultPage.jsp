@@ -81,7 +81,7 @@
             <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
 
             <div class="content">
-                <form name="General Search" action="EdResultPage.jsp">
+                <form name="General Search" action="EdServletPre">
                     <div class="row">
                         <div class="col-5">
                             <select name="designation" id="designation">
@@ -714,7 +714,13 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <jsp:include page="EdServlet"/>
+                        <%
+                            ArrayList<EdSearchResult> res = (ArrayList<EdSearchResult>) request.getAttribute("res");
+                            request.setAttribute("res", res);
+                        %>
+                        <jsp:include page="EdServletPost">
+                            <jsp:param name="result" value="<%=request.getAttribute(\"res\")%>"/> 
+                        </jsp:include>
                     </div>
                 </div>
             </div>

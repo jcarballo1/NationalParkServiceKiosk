@@ -1,16 +1,13 @@
-package org.mypackage.nationalpark;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package org.mypackage.nationalpark;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jcarb
  */
-public class GalleryServlet extends HttpServlet {
+public class GalleryServletPost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,21 +29,19 @@ public class GalleryServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, Exception {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String desig = request.getParameter("designation");
-            GalleryRequest req = new GalleryRequest();
-            ArrayList<Image> result = req.sendGet(desig);
+            ArrayList<Image> result = (ArrayList<Image>)request.getAttribute("res");
             out.println("<div class=\"row\">");
-            out.println("<div class=\"col-12\">");        
+            out.println("<div class=\"col-12\">");
             out.println("<h3>" + result.get(0).getCred() + "</h3>");
             out.println("</div>");
             out.println("</div>");
             out.println("<div class=\"row\">");
             out.println("<div class=\"col-12\">");
-            
+
             out.println("<!-- Slideshow -->");
             out.println("<div class=\"slideshow-container\">");
             int total = result.size();
@@ -67,6 +62,7 @@ public class GalleryServlet extends HttpServlet {
             }
             out.println("</div>");
         } finally {
+
         }
     }
 
@@ -82,11 +78,7 @@ public class GalleryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(GalleryServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -100,11 +92,7 @@ public class GalleryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(GalleryServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

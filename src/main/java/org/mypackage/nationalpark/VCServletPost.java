@@ -1,16 +1,14 @@
-package org.mypackage.nationalpark;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package org.mypackage.nationalpark;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jcarb
  */
-public class VCServlet extends HttpServlet {
+public class VCServletPost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,18 +30,11 @@ public class VCServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, Exception {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String desig = request.getParameter("designation");
-            String state = request.getParameter("state");
-            String keyword = request.getParameter("keyword");
-            String type = request.getParameter("type");
-            String[] keys = keyword.split(" ");
-            VCenterSearchRequest req = new VCenterSearchRequest();//Creating class Object
-            ArrayList<VCenterSearchResult> res = req.process(keys, desig, state, type);
-
+            ArrayList<VCenterSearchResult> res = (ArrayList<VCenterSearchResult>)request.getAttribute("res");
             out.println("<ul class=\"alt\">");
             if (res.size() < 1) {
                 out.println("<li>No results matched your request. Please try again.<li>");
@@ -163,6 +154,7 @@ public class VCServlet extends HttpServlet {
             }
             out.println("</ul>");
         } finally {
+
         }
     }
 
@@ -178,11 +170,7 @@ public class VCServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(VCServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -196,11 +184,7 @@ public class VCServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(VCServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -82,7 +82,7 @@
             <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
 
             <div class="content">
-                <form name="General Search" action="CEResultPage.jsp">
+                <form name="General Search" action="CEServletPre">
                     <div style="margin-bottom: 30px">
                         <div class="row">
                             <div class="col-12">
@@ -724,7 +724,13 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <jsp:include page="CEServlet" />
+                        <%
+                            ArrayList<CESearchResult> res = (ArrayList<CESearchResult>) request.getAttribute("res");
+                            request.setAttribute("res", res);
+                        %>
+                        <jsp:include page="CEServletPost">
+                            <jsp:param name="result" value="<%=request.getAttribute(\"res\")%>"/> 
+                        </jsp:include>
                     </div>
                 </div>
 

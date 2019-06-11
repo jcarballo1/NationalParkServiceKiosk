@@ -82,7 +82,7 @@
             <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
 
             <div class="content">
-                <form name="General Search" action="GalleryResultPage.jsp">
+                <form name="General Search" action="GalleryServletPre">
                     <div class="row">
                         <div class="col-10">
                             <select name="designation" id="designation">
@@ -718,7 +718,13 @@
 
                 </style>
 
-                <jsp:include page="GalleryServlet" />
+                <%
+                    ArrayList<Image> res = (ArrayList<Image>) request.getAttribute("res");
+                    request.setAttribute("res", res);
+                %>
+                <jsp:include page="GalleryServletPost">
+                    <jsp:param name="result" value="<%=request.getAttribute(\"res\")%>"/> 
+                </jsp:include>
 
                 <script>
                     var slideIndex = 1;
