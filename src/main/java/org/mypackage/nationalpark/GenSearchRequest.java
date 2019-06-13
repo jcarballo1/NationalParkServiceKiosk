@@ -28,7 +28,7 @@ import org.json.*;
 public class GenSearchRequest {
 
     private String jsonString;
-    private ArrayList<GeneralSearchResult> results;
+    private ArrayList<GeneralSearchResult> results = new ArrayList<>();
 
     public static class MyHostnameVerifier implements HostnameVerifier {
 
@@ -90,7 +90,6 @@ public class GenSearchRequest {
     public void parseJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");
-        ArrayList<GeneralSearchResult> results = new ArrayList<>();
 
         for (int i = 0; i < array.length(); i++) {
             ArrayList<Address> addies = new ArrayList<>();

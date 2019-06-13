@@ -77,10 +77,10 @@ public class CEServletPost extends HttpServlet {
                             out.println(res.get(i).getTitle() + "<br>");
                         }
                         if (!res.get(i).getDescription().equals("")) {
-                            out.println("<br>" + res.get(i).getDescription() + "<br>");
+                            out.println("<br>" + res.get(i).getDescription() + "");
                         }
                         if (!res.get(i).getLocation().equals("")) {
-                            out.println("<br>Where: " + res.get(i).getLocation());
+                            out.println("Where: " + res.get(i).getLocation());
                         }
                         if (res.get(i).getDates().size() > 0) {
                             out.println("<br>When: ");

@@ -744,18 +744,19 @@
                 </form>
 
                 <div class="row">
+                    <%
+                        ArrayList<VCenterSearchResult> res = (ArrayList<VCenterSearchResult>) request.getAttribute("res");
+                        request.setAttribute("res", res);
+                        request.setAttribute("size", res.size());
+                    %>
                     <div class="col-12">
-                        <h3>Search Results.</h3>
+                        <h3>${size} Search Results.</h3>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12">
                         <!-- Prints result through Java servlet -->
-                        <%
-                            ArrayList<VCenterSearchResult> res = (ArrayList<VCenterSearchResult>) request.getAttribute("res");
-                            request.setAttribute("res", res);
-                        %>
                         <jsp:include page="VCServletPost">
                             <jsp:param name="result" value="<%=request.getAttribute(\"res\")%>"/> 
                         </jsp:include>

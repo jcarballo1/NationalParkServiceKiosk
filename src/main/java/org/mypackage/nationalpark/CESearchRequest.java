@@ -15,8 +15,8 @@ import sun.misc.BASE64Encoder;
 
 /**
  * CESearchRequest
- * @author Jennifer Carballo 
- * Process Current Events search query, opens
+ *
+ * @author Jennifer Carballo Process Current Events search query, opens
  * connection to NPS API call, parses returned JSON result, creates necessary
  * object with the information to be displayed later
  */
@@ -73,8 +73,9 @@ public class CESearchRequest {
 
     /**
      * Opens connection using api url
+     *
      * @param url
-     * @throws Exception 
+     * @throws Exception
      */
     public void openConnection(URL url) throws Exception {
         String userName = "admin";
@@ -105,10 +106,12 @@ public class CESearchRequest {
     }
 
     /**
-     * Creates url from base and adds destination codes, states codes, and keywords
+     * Creates url from base and adds destination codes, states codes, and
+     * keywords
+     *
      * @param baseURL
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     public URL createURL(String baseURL) throws Exception {
         baseURL += desigs;
@@ -132,7 +135,8 @@ public class CESearchRequest {
 
     /**
      * passes in alert url
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     public void sendGetAlert() throws Exception {
         openConnection(createURL("https://developer.nps.gov/api/v1/alerts?parkCode="));
@@ -141,7 +145,8 @@ public class CESearchRequest {
 
     /**
      * passes in article url
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     public void sendGetArticle() throws Exception {
         openConnection(createURL("https://developer.nps.gov/api/v1/articles?parkCode="));
@@ -150,7 +155,8 @@ public class CESearchRequest {
 
     /**
      * passes in event url
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     public void sendGetEvent() throws Exception {
         openConnection(createURL("https://developer.nps.gov/api/v1/events?parkCode="));
@@ -159,7 +165,8 @@ public class CESearchRequest {
 
     /**
      * passes in news url
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     public void sendGetNews() throws Exception {
         openConnection(createURL("https://developer.nps.gov/api/v1/newsreleases?parkCode="));
@@ -168,7 +175,8 @@ public class CESearchRequest {
 
     /**
      * parses alert JSON and adds objects to arraylist
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     public void parseAlertJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
@@ -212,7 +220,8 @@ public class CESearchRequest {
 
     /**
      * parses article JSON and adds objects to arraylist
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     public void parseArticleJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
@@ -234,7 +243,6 @@ public class CESearchRequest {
             } catch (Exception e) {
                 good = false;
             }
-
             if (good) {
                 altText = currObj.getString("altText");
                 imageURL = currObj.getString("url");
@@ -262,7 +270,8 @@ public class CESearchRequest {
 
     /**
      * parses event JSON and adds objects to arraylist
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     public void parseEventJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
@@ -280,6 +289,7 @@ public class CESearchRequest {
             String title = "";
             String fees = "";
             String url = "";
+            String imageURL = "";
 
             JSONObject subObj = array.getJSONObject(i);
             JSONArray curr = null;
@@ -349,14 +359,27 @@ public class CESearchRequest {
             } catch (Exception e) {
             }
 
+            good = true;
+            try {
+                curr = subObj.getJSONArray("images");
+            } catch (Exception e) {
+                good = false;
+            }
+            if (good) {
+                if (curr.length() > 0) {
+                    imageURL = curr.getJSONObject(0).getString("url");
+                }
+            }
+
             results.add(new CESearchResult(email, contactName, contactPhone, dates, location, timeStart,
-                    timeEnd, descrip, title, fees, url));
+                    timeEnd, descrip, title, fees, url, imageURL));
         }
     }
 
     /**
      * parses news JSON and adds objects to arraylist
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     public void parseNewsJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);

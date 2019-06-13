@@ -59,7 +59,7 @@
                 <h2>Get Locations, Operating Hours, & More.</h2>
                 <p>Select your destination or state of choice below. <b>It may take a few seconds.</b></p>
             </header>
-            
+
             <!-- Back to Top Button Functionality -->
             <script>
                 // When the user scrolls down 20px from the top of the document, show the button
@@ -727,18 +727,19 @@
                 </form>
 
                 <div class="row">
+                    <%
+                        ArrayList<GeneralSearchResult> res = (ArrayList<GeneralSearchResult>) request.getAttribute("res");
+                        request.setAttribute("res", res);
+                        request.setAttribute("size", res.size());
+                    %>
                     <div class="col-12">
-                        <h3>Search Results.</h3>
+                        <h3>${size} Search Results.</h3>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12">
                         <!-- Prints result through Java servlet -->
-                        <%
-                            ArrayList<GeneralSearchResult> res = (ArrayList<GeneralSearchResult>) request.getAttribute("res");
-                            request.setAttribute("res", res);
-                        %>
                         <jsp:include page="GenSearchServletPost">
                             <jsp:param name="res" value="<%=request.getAttribute(\"res\")%>"/> 
                         </jsp:include>

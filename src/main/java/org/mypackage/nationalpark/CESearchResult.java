@@ -87,7 +87,7 @@ public class CESearchResult {
      * @param fees
      * @param url
      */
-    public CESearchResult(String e, String name, String phone, ArrayList<String> ds, String l, String tStart, String tEnd, String d, String t, String f, String u) { //Event
+    public CESearchResult(String e, String name, String phone, ArrayList<String> ds, String l, String tStart, String tEnd, String d, String t, String f, String u, String iurl) { //Event
         email = e;
         contactName = name;
         contactPhone = phone;
@@ -99,6 +99,7 @@ public class CESearchResult {
         title = t;
         fees = f;
         url = u;
+        imageURL = iurl;
         type = "Event";
     }
 
