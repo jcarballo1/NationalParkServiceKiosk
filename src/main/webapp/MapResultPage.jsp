@@ -1,7 +1,9 @@
 <%-- 
-    Document   : response
-    Created on : May 26, 2019, 6:25:58 PM
-    Author     : jcarb
+    Document    : MapResultPage
+    Created on  : May 26, 2019, 6:25:58 PM
+    Author      : Jennifer Carballo
+    Description : JSP in response to Map search query;
+                  passes input to Post-Servlet; passes input to Pre-Servlet for next search request
 --%>
 
 <%@page import="java.util.Iterator"%>
@@ -45,7 +47,7 @@
         </ul>
     </nav>
 
-    <!-- Heading -->
+    <!-- Heading w/ Custom Styling -->
     <div id="heading" style="background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url(images/Road.jpg); background-position: bottom">
         <h1>Map Location</h1>
     </div>
@@ -58,6 +60,7 @@
                 <p>Select your destination below. <b>It may take a few seconds.</b></p>
             </header>
 
+            <!-- Back to Top Button Functionality -->
             <script>
                 // When the user scrolls down 20px from the top of the document, show the button
                 window.onscroll = function () {
@@ -651,27 +654,30 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <script
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2C3nj6shFaou4TBmgevRbKL3p5aN4UxY&v=3.exp&sensor=false"></script>
+                        <!-- Map from Google Maps API -->
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2C3nj6shFaou4TBmgevRbKL3p5aN4UxY&v=3.exp&sensor=false"></script>
+                        
+                        <!-- Coordinate input processing and Map Functionality -->
                         <script>
-                var map;
-                function initialize() {
-                    var mapOptions = {
-                        zoom: 10,
-                        center: new google.maps.LatLng(${latitude}, ${longitude})
-                    };
-                    map = new google.maps.Map(document.getElementById('map-canvas'),
-                            mapOptions);
+                            var map;
+                            function initialize() {
+                                var mapOptions = {
+                                    zoom: 10,
+                                    center: new google.maps.LatLng(${latitude}, ${longitude})
+                                };
+                                map = new google.maps.Map(document.getElementById('map-canvas'),
+                                        mapOptions);
 
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(${latitude}, ${longitude}),
-                        map: map,
-                        title: 'Destination'
-                    });
-                }
+                                var marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(${latitude}, ${longitude}),
+                                    map: map,
+                                    title: 'Destination'
+                                });
+                            }
 
-                google.maps.event.addDomListener(window, 'load', initialize);
+                            google.maps.event.addDomListener(window, 'load', initialize);
                         </script>
+                                    
                         <div id="map-canvas" style="height:500px;"></div>
                     </div>
                 </div>

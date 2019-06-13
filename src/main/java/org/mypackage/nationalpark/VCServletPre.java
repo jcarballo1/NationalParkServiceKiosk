@@ -1,14 +1,7 @@
 package org.mypackage.nationalpark;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -18,8 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author jcarb
+ * VCServletPre
+ * @author Jennifer Carballo
+ * Servlet to process request and send result to JSP result page
  */
 public class VCServletPre extends HttpServlet {
 
@@ -34,20 +28,23 @@ public class VCServletPre extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
+        
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
             String desig = request.getParameter("destination");
             String state = request.getParameter("state");
             String keyword = request.getParameter("keyword");
             String type = request.getParameter("type");
-            String[] keys = keyword.split(" ");
+            String[] keys = keyword.split(" "); //splits multiword keyword query
+            
             VCenterSearchRequest req = new VCenterSearchRequest();//Creating class Object
-            ArrayList<VCenterSearchResult> res = req.process(keys, desig, state, type);
-            request.setAttribute("res", res);
+            ArrayList<VCenterSearchResult> res = req.process(keys, desig, state, type); //passes in search query
+            request.setAttribute("res", res); //sets result to be accessed in jsp
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher("VCenterResultPage.jsp");
             dispatcher.forward(request, response);
         } finally {
+            //do nothing
         }
     }
 

@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author jcarb
+ * GeneralSearchResult
+ * @author Jennifer Carballo
+ * Object contains all necessary listing information for the requested destination
  */
 public class GeneralSearchResult {
 
@@ -26,6 +22,21 @@ public class GeneralSearchResult {
     private ArrayList<Hours> hours;
     private String url;
 
+    /**
+     * Constructor for the GeneralSearchResult object
+     * @param n
+     * @param c
+     * @param d
+     * @param w
+     * @param a
+     * @param num
+     * @param e
+     * @param f
+     * @param p
+     * @param i
+     * @param h
+     * @param u 
+     */
     public GeneralSearchResult(String n, String c, String d, String w, ArrayList<Address> a, ArrayList<PhoneNumber> num,
             ArrayList<String> e, ArrayList<EntranceFee> f, ArrayList<EntrancePass> p, ArrayList<Image> i, ArrayList<Hours> h, String u) {
         name = n;

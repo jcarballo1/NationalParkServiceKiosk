@@ -1,7 +1,9 @@
 <%-- 
-    Document   : response
-    Created on : May 26, 2019, 6:25:58 PM
-    Author     : jcarb
+    Document    : VCenterResultPage
+    Created on  : May 26, 2019, 6:25:58 PM
+    Author      : Jennifer Carballo
+    Description : JSP in response to Visitor Center search query;
+                  passes input to Post-Servlet; passes input to Pre-Servlet for next search request
 --%>
 
 <%@page import="java.util.Iterator"%>
@@ -45,7 +47,7 @@
         </ul>
     </nav>
 
-    <!-- Heading -->
+    <!-- Heading w/ Custom Styling -->
     <div id="heading" style="background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url(images/Campgrounds.jpg); background-position: bottom">
         <h1>Visitor Center Information</h1>
     </div>
@@ -58,6 +60,7 @@
                 <p>Search keywords or select your destination or state of choice below. <b>It may take a few seconds.</b></p>
             </header>
 
+            <!-- Back to Top Button Functionality -->
             <script>
                 // When the user scrolls down 20px from the top of the document, show the button
                 window.onscroll = function () {
@@ -748,13 +751,13 @@
 
                 <div class="row">
                     <div class="col-12">
+                        <!-- Prints result through Java servlet -->
                         <%
                             ArrayList<VCenterSearchResult> res = (ArrayList<VCenterSearchResult>) request.getAttribute("res");
                             request.setAttribute("res", res);
                         %>
                         <jsp:include page="VCServletPost">
-                            <jsp:param name="result" value="<%=request.getAttribute(
-                            \"res\")%>"/> 
+                            <jsp:param name="result" value="<%=request.getAttribute(\"res\")%>"/> 
                         </jsp:include>
                     </div>
                 </div>

@@ -1,7 +1,6 @@
 package org.mypackage.nationalpark;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -14,19 +13,20 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import sun.misc.BASE64Encoder;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author jcarb
+ * CESearchRequest
+ * @author Jennifer Carballo 
+ * Process Current Events search query, opens
+ * connection to NPS API call, parses returned JSON result, creates necessary
+ * object with the information to be displayed later
  */
 public class CESearchRequest {
 
     private String jsonString;
     private ArrayList<CESearchResult> results;
+    private String[] keywords;
+    private String desigs;
+    private String states;
 
     public static class MyHostnameVerifier implements HostnameVerifier {
 
@@ -36,44 +36,47 @@ public class CESearchRequest {
         }
     }
 
-    public ArrayList<CESearchResult> process(String[] keywords, String desigs, String states, String key) throws Exception {
+    /**
+     * Processes search query and opens connections to api based on type
+     * requested
+     *
+     * @param keywords
+     * @param desigs
+     * @param states
+     * @param key
+     * @return array of objects
+     * @throws Exception
+     */
+    public ArrayList<CESearchResult> process(String[] words, String ds, String sts, String key) throws Exception {
         results = new ArrayList<>();
+        keywords = words;
+        desigs = ds;
+        states = sts;
+
         if (key.equals("")) {
-            sendGetAlert(keywords, desigs, states);
-            sendGetArticle(keywords, desigs, states);
-            sendGetEvent(keywords, desigs, states);
-            sendGetNews(keywords, desigs, states);
+            sendGetAlert();
+            sendGetArticle();
+            sendGetEvent();
+            sendGetNews();
         } else if (key.equals("alr")) {
-            sendGetAlert(keywords, desigs, states);
+            sendGetAlert();
         } else if (key.equals("art")) {
-            sendGetArticle(keywords, desigs, states);
+            sendGetArticle();
         } else if (key.equals("ev")) {
-            sendGetEvent(keywords, desigs, states);
+            sendGetEvent();
         } else {
-            sendGetNews(keywords, desigs, states);
+            sendGetNews();
         }
 
         return results;
     }
 
-    public void sendGetAlert(String[] keywords, String desigs, String states) throws Exception {
-        String baseURL = "https://developer.nps.gov/api/v1/alerts?parkCode=";
-        baseURL += desigs;
-        baseURL += "&stateCode=" + states;
-
-        if (!keywords[0].equals("")) {
-            baseURL += "&q=";
-            for (int i = 0; i < keywords.length; i++) {
-                if (i == keywords.length - 1) {
-                    baseURL += keywords[i];
-                } else {
-                    baseURL += keywords[i] + "%20";
-                }
-            }
-        }
-
-        baseURL += "&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
-        URL url = new URL(baseURL);
+    /**
+     * Opens connection using api url
+     * @param url
+     * @throws Exception 
+     */
+    public void openConnection(URL url) throws Exception {
         String userName = "admin";
         String password = "admin";
         String authentication = "CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
@@ -99,147 +102,74 @@ public class CESearchRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
+    }
+
+    /**
+     * Creates url from base and adds destination codes, states codes, and keywords
+     * @param baseURL
+     * @return
+     * @throws Exception 
+     */
+    public URL createURL(String baseURL) throws Exception {
+        baseURL += desigs;
+        baseURL += "&stateCode=" + states;
+
+        if (!keywords[0].equals("")) {
+            baseURL += "&q=";
+            for (int i = 0; i < keywords.length; i++) {
+                if (i == keywords.length - 1) {
+                    baseURL += keywords[i];
+                } else {
+                    baseURL += keywords[i] + "%20";
+                }
+            }
+        }
+
+        baseURL += "&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
+        URL url = new URL(baseURL);
+        return url;
+    }
+
+    /**
+     * passes in alert url
+     * @throws Exception 
+     */
+    public void sendGetAlert() throws Exception {
+        openConnection(createURL("https://developer.nps.gov/api/v1/alerts?parkCode="));
         parseAlertJSON();
     }
 
-    public void sendGetArticle(String[] keywords, String desigs, String states) throws Exception {
-        String baseURL = "https://developer.nps.gov/api/v1/articles?parkCode=";
-        baseURL += desigs;
-        baseURL += "&stateCode=" + states;
-
-        if (!keywords[0].equals("")) {
-            baseURL += "&q=";
-            for (int i = 0; i < keywords.length; i++) {
-                if (i == keywords.length - 1) {
-                    baseURL += keywords[i];
-                } else {
-                    baseURL += keywords[i] + "%20";
-                }
-            }
-        }
-
-        baseURL += "&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
-        URL url = new URL(baseURL);
-        String userName = "admin";
-        String password = "admin";
-        String authentication = "CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
-
-        HttpURLConnection connection = null;
-        connection = (HttpsURLConnection) url.openConnection();
-        ((HttpsURLConnection) connection).setHostnameVerifier(new VCenterSearchRequest.MyHostnameVerifier());
-        connection.setRequestProperty("Content-Type", "text/plain; charset=\"utf8\"");
-        connection.setRequestMethod("GET");
-        BASE64Encoder encoder = new BASE64Encoder();
-        String encoded = encoder.encode((authentication).getBytes("UTF-8"));
-        connection.setRequestProperty("Authorization", encoded);
-        connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
-        connection.setDoOutput(true);
-        connection.connect();
-
-        int responseCode = connection.getResponseCode();
-        InputStream input = (InputStream) connection.getContent();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"), 8);
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line + "\n");
-        }
-        jsonString = sb.toString();
+    /**
+     * passes in article url
+     * @throws Exception 
+     */
+    public void sendGetArticle() throws Exception {
+        openConnection(createURL("https://developer.nps.gov/api/v1/articles?parkCode="));
         parseArticleJSON();
     }
 
-    public void sendGetEvent(String[] keywords, String desigs, String states) throws Exception {
-        String baseURL = "https://developer.nps.gov/api/v1/events?parkCode=";
-        baseURL += desigs;
-        baseURL += "&stateCode=" + states;
-
-        if (!keywords[0].equals("")) {
-            baseURL += "&q=";
-            for (int i = 0; i < keywords.length; i++) {
-                if (i == keywords.length - 1) {
-                    baseURL += keywords[i];
-                } else {
-                    baseURL += keywords[i] + "%20";
-                }
-            }
-        }
-
-        baseURL += "&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
-        URL url = new URL(baseURL);
-        String userName = "admin";
-        String password = "admin";
-        String authentication = "CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
-
-        HttpURLConnection connection = null;
-        connection = (HttpsURLConnection) url.openConnection();
-        ((HttpsURLConnection) connection).setHostnameVerifier(new VCenterSearchRequest.MyHostnameVerifier());
-        connection.setRequestProperty("Content-Type", "text/plain; charset=\"utf8\"");
-        connection.setRequestMethod("GET");
-        BASE64Encoder encoder = new BASE64Encoder();
-        String encoded = encoder.encode((authentication).getBytes("UTF-8"));
-        connection.setRequestProperty("Authorization", encoded);
-        connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
-        connection.setDoOutput(true);
-        connection.connect();
-
-        int responseCode = connection.getResponseCode();
-        InputStream input = (InputStream) connection.getContent();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"), 8);
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line + "\n");
-        }
-        jsonString = sb.toString();
+    /**
+     * passes in event url
+     * @throws Exception 
+     */
+    public void sendGetEvent() throws Exception {
+        openConnection(createURL("https://developer.nps.gov/api/v1/events?parkCode="));
         parseEventJSON();
     }
 
-    public void sendGetNews(String[] keywords, String desigs, String states) throws Exception {
-        String baseURL = "https://developer.nps.gov/api/v1/newsreleases?parkCode=";
-        baseURL += desigs;
-        baseURL += "&stateCode=" + states;
-
-        if (!keywords[0].equals("")) {
-            baseURL += "&q=";
-            for (int i = 0; i < keywords.length; i++) {
-                if (i == keywords.length - 1) {
-                    baseURL += keywords[i];
-                } else {
-                    baseURL += keywords[i] + "%20";
-                }
-            }
-        }
-
-        baseURL += "&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
-        URL url = new URL(baseURL);
-        String userName = "admin";
-        String password = "admin";
-        String authentication = "CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
-
-        HttpURLConnection connection = null;
-        connection = (HttpsURLConnection) url.openConnection();
-        ((HttpsURLConnection) connection).setHostnameVerifier(new VCenterSearchRequest.MyHostnameVerifier());
-        connection.setRequestProperty("Content-Type", "text/plain; charset=\"utf8\"");
-        connection.setRequestMethod("GET");
-        BASE64Encoder encoder = new BASE64Encoder();
-        String encoded = encoder.encode((authentication).getBytes("UTF-8"));
-        connection.setRequestProperty("Authorization", encoded);
-        connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
-        connection.setDoOutput(true);
-        connection.connect();
-
-        int responseCode = connection.getResponseCode();
-        InputStream input = (InputStream) connection.getContent();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"), 8);
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line + "\n");
-        }
-        jsonString = sb.toString();
+    /**
+     * passes in news url
+     * @throws Exception 
+     */
+    public void sendGetNews() throws Exception {
+        openConnection(createURL("https://developer.nps.gov/api/v1/newsreleases?parkCode="));
         parseNewsJSON();
     }
 
+    /**
+     * parses alert JSON and adds objects to arraylist
+     * @throws Exception 
+     */
     public void parseAlertJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");
@@ -280,6 +210,10 @@ public class CESearchRequest {
         }
     }
 
+    /**
+     * parses article JSON and adds objects to arraylist
+     * @throws Exception 
+     */
     public void parseArticleJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");
@@ -326,6 +260,10 @@ public class CESearchRequest {
         }
     }
 
+    /**
+     * parses event JSON and adds objects to arraylist
+     * @throws Exception 
+     */
     public void parseEventJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");
@@ -416,6 +354,10 @@ public class CESearchRequest {
         }
     }
 
+    /**
+     * parses news JSON and adds objects to arraylist
+     * @throws Exception 
+     */
     public void parseNewsJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");

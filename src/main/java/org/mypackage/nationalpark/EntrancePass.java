@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 /**
- *
- * @author jcarb
+ * EntrancePass
+ * @author Jennifer Carballo
+ * Object contains cost, description, and title of entrance pass
  */
 public class EntrancePass {
 

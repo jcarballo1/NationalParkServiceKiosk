@@ -1,7 +1,9 @@
 <%-- 
-    Document   : response
-    Created on : May 26, 2019, 6:25:58 PM
-    Author     : jcarb
+    Document    : GeneralSearchResultPage
+    Created on  : May 26, 2019, 6:25:58 PM
+    Author      : Jennifer Carballo
+    Description : JSP in response to General Search search query;
+                  passes input to Post-Servlet; passes input to Pre-Servlet for next search request
 --%>
 
 <%@page import="java.util.Iterator"%>
@@ -57,7 +59,8 @@
                 <h2>Get Locations, Operating Hours, & More.</h2>
                 <p>Select your destination or state of choice below. <b>It may take a few seconds.</b></p>
             </header>
-
+            
+            <!-- Back to Top Button Functionality -->
             <script>
                 // When the user scrolls down 20px from the top of the document, show the button
                 window.onscroll = function () {
@@ -731,13 +734,13 @@
 
                 <div class="row">
                     <div class="col-12">
+                        <!-- Prints result through Java servlet -->
                         <%
                             ArrayList<GeneralSearchResult> res = (ArrayList<GeneralSearchResult>) request.getAttribute("res");
                             request.setAttribute("res", res);
                         %>
                         <jsp:include page="GenSearchServletPost">
-                            <jsp:param name="res" value="<%=request.getAttribute(
-                            \"res\")%>"/> 
+                            <jsp:param name="res" value="<%=request.getAttribute(\"res\")%>"/> 
                         </jsp:include>
                     </div>
                 </div>

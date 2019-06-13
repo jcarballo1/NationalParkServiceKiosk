@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 import java.io.IOException;
@@ -18,8 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author jcarb
+ * EdServletPre
+ * @author Jennifer Carballo
+ * Servlet to process request and send result to JSP result page
  */
 public class EdServletPre extends HttpServlet {
 
@@ -40,12 +36,15 @@ public class EdServletPre extends HttpServlet {
             String desig = request.getParameter("destination");
             String state = request.getParameter("state");
             String key = request.getParameter("type");
+            
             EdSearchRequest req = new EdSearchRequest();//Creating class Object
-            ArrayList<EdSearchResult> res = req.process(desig, state, key);
-            request.setAttribute("res", res);
+            ArrayList<EdSearchResult> res = req.process(desig, state, key); //passes in search query
+            request.setAttribute("res", res); //sets result to be accessed by jsp
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher("EdResultPage.jsp");
             dispatcher.forward(request, response);
         } finally {
+            //do nothing
         }
     }
 

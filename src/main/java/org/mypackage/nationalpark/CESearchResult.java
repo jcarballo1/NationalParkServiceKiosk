@@ -1,30 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author jcarb
+ * CESearchResult
+ * @author Jennifer Carballo 
+ * Object that contains all necessary information for
+ * alerts, articles, events, and news releases
  */
 public class CESearchResult {
 
-    //alert
+    //Alert
     private String title = "";
     private String category = "";
     private String description = "";
     private String url = "";
 
-    //articles
+    //Articles
     private String altText = "";
     private String listingDes = "";
     private String imageURL = "";
 
-    //events
+    //Events
     private String email = "";
     private String contactName = "";
     private String contactPhone = "";
@@ -34,13 +31,22 @@ public class CESearchResult {
     private String timeEnd = "";
     private String fees = "";
 
-    //news
+    //News
     private String abs = ""; //abstract
     private String releaseDate = "";
 
+    //For all
     private String type = "";
 
-    public CESearchResult(String t, String c, String d, String u) { //Alert
+    /**
+     * Constructor for Alert
+     *
+     * @param title
+     * @param category
+     * @param description
+     * @param url
+     */
+    public CESearchResult(String t, String c, String d, String u) {
         title = t;
         category = c;
         description = d;
@@ -48,6 +54,15 @@ public class CESearchResult {
         type = "Alert";
     }
 
+    /**
+     * Constructor for Article
+     *
+     * @param altText
+     * @param imageURL
+     * @param listingDescription
+     * @param title
+     * @param url
+     */
     public CESearchResult(String alt, String iURL, String l, String t, String u) { //Article
         altText = alt;
         imageURL = iURL;
@@ -57,6 +72,21 @@ public class CESearchResult {
         type = "Article";
     }
 
+    /**
+     * Constructor for Event
+     *
+     * @param email
+     * @param contactName
+     * @param contactPhoneNumber
+     * @param dates
+     * @param location
+     * @param timeStart
+     * @param timeEnd
+     * @param description
+     * @param title
+     * @param fees
+     * @param url
+     */
     public CESearchResult(String e, String name, String phone, ArrayList<String> ds, String l, String tStart, String tEnd, String d, String t, String f, String u) { //Event
         email = e;
         contactName = name;
@@ -72,6 +102,16 @@ public class CESearchResult {
         type = "Event";
     }
 
+    /**
+     * Constructor for News Release
+     *
+     * @param abstract
+     * @param releaseDate
+     * @param title
+     * @param url
+     * @param imageURL
+     * @param blank (to distinguish from article constructor
+     */
     public CESearchResult(String a, String rd, String t, String u, String iu, String blank) { //News
         abs = a;
         releaseDate = rd;

@@ -1,14 +1,10 @@
 package org.mypackage.nationalpark;
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author jcarb
+ * EdSearchResult
+ * @author Jennifer Carballo
+ * Object that contains all necessary information for
+ * lesson plans, people, and places
  */
 public class EdSearchResult {
 
@@ -27,7 +23,14 @@ public class EdSearchResult {
 
     private String type = "";
 
-    public EdSearchResult(String t, String u, String o, String s) { //Lesson Plans
+    /**
+     * Constructor for Lesson Plan
+     * @param t
+     * @param u
+     * @param o
+     * @param s 
+     */
+    public EdSearchResult(String t, String u, String o, String s) {
         title = t;
         url = u;
         objective = o;
@@ -35,7 +38,15 @@ public class EdSearchResult {
         type = "Lesson Plan";
     }
 
-    public EdSearchResult(String iu, String ld, String t, String u, String ty) { //People & Place
+    /**
+     * Constructor for People and Places
+     * @param iu
+     * @param ld
+     * @param t
+     * @param u
+     * @param ty 
+     */
+    public EdSearchResult(String iu, String ld, String t, String u, String ty) {
         imageURL = iu;
         listingDes = ld;
         title = t;

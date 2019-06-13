@@ -1,19 +1,21 @@
 package org.mypackage.nationalpark;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author jcarb
+ * MapResult
+ * @author Jennifer Carballo
+ * Object contains name, latitude, and longitude of requested destination
  */
 public class MapResult {
     private String name;
     private String latitude;
     private String longitude;
 
+    /**
+     * Constructor of Map Result object; 
+     * splits passed in string coordinates into long and lat
+     * @param n
+     * @param coords 
+     */
     public MapResult(String n, String coords) {
         name = n;
         String[] array = coords.split(", ");

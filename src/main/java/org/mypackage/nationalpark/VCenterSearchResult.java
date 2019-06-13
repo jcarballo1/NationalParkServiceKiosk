@@ -1,18 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author jcarb
+ * VCenterSearchResult
+ * @author Jennifer Carballo
+ * Object contains necessary information for visitor centers and campgrounds
  */
 public class VCenterSearchResult {
 
+    //both visitor canter and campground
     private String name;
     private String descrip;
     private String direct;
@@ -22,17 +19,23 @@ public class VCenterSearchResult {
     private ArrayList<Address> addies;
     private ArrayList<Hours> hours;
     private String url;
-    private String wheelchair;
-    private String ada;
-    private String toilets;
-    private String internet;
-    private String showers;
-    private String water;
-    private String fees;
-    private String weather;
-    private String regulationURL;
     private String type;
+    
+    //campground
+    private String wheelchair = "";
+    private String ada = "";
+    private String toilets = "";
+    private String internet = "";
+    private String showers = "";
+    private String water = "";
+    private String fees = "";
+    private String weather = "";
+    private String regulationURL = "";
 
+    /**
+     * Constructor for Visitor Center object
+     * @param many 
+     */
     public VCenterSearchResult(String n, String d, String di, String c, ArrayList<PhoneNumber> num, ArrayList<String> e, ArrayList<Address> a, ArrayList<Hours> h, String u, String ty) {
         name = n;
         descrip = d;
@@ -43,19 +46,14 @@ public class VCenterSearchResult {
         addies = a;
         hours = h;
         url = u;
-        wheelchair = "";
-        ada = "";
-        toilets = "";
-        internet = "";
-        showers = "";
-        water = "";
-        fees = "";
-        weather = "";
-        regulationURL = "";
         type = ty;
 
     }
 
+    /**
+     * Constructor for Campground object
+     * @param many
+     */
     public VCenterSearchResult(String n, String d, String di, String c, ArrayList<PhoneNumber> num, ArrayList<String> e, ArrayList<Address> a, ArrayList<Hours> h, String u,
             String wc, String ad, String t, String i, String s, String w, String f, String wea, String ru, String ty) {
         name = n;

@@ -18,14 +18,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import sun.misc.BASE64Encoder;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author jcarb
+ * MapRequest
+ * @author Jennifer Carballo
+ * Process Map search query, opens
+ * connection to NPS API call, parses returned JSON result, creates necessary
+ * object with the information to be displayed later
  */
 public class MapRequest {
 
@@ -40,6 +38,12 @@ public class MapRequest {
         }
     }
 
+    /**
+     * Opens connection using api url, stores json, and calls method to parse
+     * @param desig
+     * @return MapResult object
+     * @throws Exception 
+     */
     public MapResult sendGet(String desig) throws Exception {
         String baseURL = "https://developer.nps.gov/api/v1/parks?parkCode=";
         baseURL += desig;
@@ -75,6 +79,10 @@ public class MapRequest {
         return req;
     }
 
+    /**
+     * parses json and creates Map Result object
+     * @throws Exception 
+     */
     public void parseJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");

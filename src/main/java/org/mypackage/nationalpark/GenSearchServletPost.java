@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 import java.io.IOException;
@@ -15,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author jcarb
+ * GenSearchServletPost
+ * @author Jennifer Carballo
+ * Prints result from Pre-Servlet to JSP result page
  */
 public class GenSearchServletPost extends HttpServlet {
 
@@ -31,11 +27,13 @@ public class GenSearchServletPost extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             ArrayList<GeneralSearchResult> res = (ArrayList<GeneralSearchResult>)request.getAttribute("res");
-            out.println("<ul class=\"alt\">");
+            
+            out.println("<ul class=\"alt\">"); //for listing
             if (res.size() < 1) {
                 out.println("<li>No results matched your request. Please try again.<li>");
             } else {
@@ -45,6 +43,7 @@ public class GenSearchServletPost extends HttpServlet {
                     if (res.get(i).getImages().size() > 0) {
                         out.println("<img src=\"" + res.get(i).getImages().get(0).getUrl() + "\" height=200><br><br>");
                     }
+                    
                     int j;
                     if (res.get(i).getAdds().size() > 0) {
                         for (j = 0; j < res.get(i).getAdds().size(); j++) {
@@ -130,13 +129,12 @@ public class GenSearchServletPost extends HttpServlet {
                         out.println("<br>");
                         out.println("<a href=\"" + res.get(i).getUrl() + "\"> Official " + res.get(i).getName() + " Page</a>");
                     }
-
-                    out.println("</li>");
+                    out.println("</li>"); //end of single result
                 }
             }
-            out.println("</ul>");
+            out.println("</ul>"); //end
         } finally {
-            
+            //do nothing
         }
     }
 

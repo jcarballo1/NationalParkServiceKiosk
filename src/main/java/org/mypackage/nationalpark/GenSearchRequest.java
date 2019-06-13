@@ -18,20 +18,17 @@ import javax.net.ssl.SSLSession;
 import sun.misc.BASE64Encoder;
 import org.json.*;
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author jcarb
+ * GenSearchRequest
+ * @author Jennifer Carballo 
+ * Process General Search search query, opens
+ * connection to NPS API call, parses returned JSON result, creates necessary
+ * object with the information to be displayed later
  */
 public class GenSearchRequest {
 
     private String jsonString;
-    BufferedWriter inFile;
+    private ArrayList<GeneralSearchResult> results;
 
     public static class MyHostnameVerifier implements HostnameVerifier {
 
@@ -41,6 +38,15 @@ public class GenSearchRequest {
         }
     }
 
+    /**
+     * Opens connection using api url, stores resulting json, calls parsing
+     * method
+     *
+     * @param desigs
+     * @param states
+     * @return array list of General Search Result objects
+     * @throws Exception
+     */
     public ArrayList<GeneralSearchResult> sendGetSingle(String desigs, String states) throws Exception {
         String baseURL = "https://developer.nps.gov/api/v1/parks?parkCode=";
         baseURL += desigs;
@@ -53,7 +59,7 @@ public class GenSearchRequest {
 
         HttpURLConnection connection = null;
         connection = (HttpsURLConnection) url.openConnection();
-        ((HttpsURLConnection) connection).setHostnameVerifier(new MyHostnameVerifier());
+        ((HttpsURLConnection) connection).setHostnameVerifier(new VCenterSearchRequest.MyHostnameVerifier());
         connection.setRequestProperty("Content-Type", "text/plain; charset=\"utf8\"");
         connection.setRequestMethod("GET");
         BASE64Encoder encoder = new BASE64Encoder();
@@ -64,13 +70,6 @@ public class GenSearchRequest {
         connection.connect();
 
         int responseCode = connection.getResponseCode();
-
-        inFile = new BufferedWriter(new FileWriter("C:\\Users\\jcarb\\Documents\\NetBeansProjects\\NationalParkServiceKiosk\\output.txt"));;
-        inFile.write("Sending 'GET' request to URL : " + url.toString());
-        inFile.write("\nResponse Code : " + responseCode);
-        inFile.write("\n");
-        inFile.write(connection.getContentType());
-
         InputStream input = (InputStream) connection.getContent();
         BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"), 8);
         StringBuilder sb = new StringBuilder();
@@ -79,13 +78,16 @@ public class GenSearchRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
-        ArrayList<GeneralSearchResult> res = parseJSON();
-        inFile.close();
+        parseJSON();
 
-        return res;
+        return results;
     }
 
-    public ArrayList<GeneralSearchResult> parseJSON() throws Exception {
+    /**
+     * parses JSON and adds objects to arraylist
+     * @throws Exception 
+     */
+    public void parseJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");
         ArrayList<GeneralSearchResult> results = new ArrayList<>();
@@ -159,9 +161,6 @@ public class GenSearchRequest {
 
             results.add(new GeneralSearchResult(subObj.getString("fullName"), subObj.getString("latLong"), subObj.getString("description"),
                     subObj.getString("weatherInfo"), addies, numbers, emails, fees, passes, images, hours, subObj.getString("url")));
-
-            inFile.write(results.get(i).getName() + "\n");
         }
-        return results;
     }
 }

@@ -1,24 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author jcarb
+ * Map Servlet
+ * @author Jennifer Carballo
+ * Single servlet (no post or pre) that processes requests and sends the result to JSP
  */
 public class MapServlet extends HttpServlet {
 
@@ -36,14 +30,17 @@ public class MapServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String desig = request.getParameter("destination");
+            
             MapRequest req = new MapRequest();
-            MapResult result = req.sendGet(desig);
+            MapResult result = req.sendGet(desig); //passes in search query
             request.setAttribute("name", result.getName());
             request.setAttribute("longitude", result.getLongitude());
-            request.setAttribute("latitude", result.getLatitude());
+            request.setAttribute("latitude", result.getLatitude()); //results set to be accessed in jsp
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher("MapResultPage.jsp");
             dispatcher.forward(request, response);
         } finally {
+            //do nothing
         }
     }
 

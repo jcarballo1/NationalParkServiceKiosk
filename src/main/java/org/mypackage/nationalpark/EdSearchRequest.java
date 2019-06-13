@@ -13,19 +13,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import sun.misc.BASE64Encoder;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author jcarb
+ * EdSearchRequest
+ * @author Jennifer Carballo
+ * Process Education search query, opens
+ * connection to NPS API call, parses returned JSON result, creates necessary
+ * object with the information to be displayed later
  */
 public class EdSearchRequest {
 
     private ArrayList<EdSearchResult> results;
     private String jsonString;
+    private String desigs;
+    private String states;
 
     public static class MyHostnameVerifier implements HostnameVerifier {
 
@@ -35,8 +35,19 @@ public class EdSearchRequest {
         }
     }
 
-    public ArrayList<EdSearchResult> process(String desigs, String states, String key) throws Exception {
+    /**
+     * Processes search query and opens connections to api based on type
+     * requested
+     * @param ds
+     * @param sts
+     * @param key
+     * @return
+     * @throws Exception 
+     */
+    public ArrayList<EdSearchResult> process(String ds, String sts, String key) throws Exception {
         results = new ArrayList<>();
+        desigs = ds;
+        states = sts;
         if (key.equals("")) {
             sendLessonGet(desigs, states);
             sendPeopleGet(desigs, states);
@@ -50,13 +61,13 @@ public class EdSearchRequest {
         }
         return results;
     }
-
-    public void sendLessonGet(String desigs, String states) throws Exception {
-        String baseURL = "https://developer.nps.gov/api/v1/lessonplans?parkCode=";
-        baseURL += desigs;
-        baseURL += "&stateCode=" + states;
-        baseURL += "&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
-        URL url = new URL(baseURL);
+    
+    /**
+     * Opens connection using api url
+     * @param url
+     * @throws Exception 
+     */
+    public void openConnection(URL url) throws Exception {
         String userName = "admin";
         String password = "admin";
         String authentication = "CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
@@ -82,80 +93,53 @@ public class EdSearchRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
-        jsonString = jsonString.replaceAll("\'", "&#39");
+    }
+
+    /**
+     * Creates url from base and adds destination codes, states codes, and keywords
+     * @param baseURL
+     * @return
+     * @throws Exception 
+     */
+    public URL createURL(String baseURL) throws Exception {
+        baseURL += desigs;
+        baseURL += "&stateCode=" + states;
+        baseURL += "&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
+        URL url = new URL(baseURL);
+        return url;
+    }
+
+    /**
+     * passes in lesson plans url
+     * @throws Exception 
+     */
+    public void sendLessonGet(String desigs, String states) throws Exception {
+        openConnection(createURL("https://developer.nps.gov/api/v1/lessonplans?parkCode="));
         parseLessonJSON();
     }
 
+    /**
+     * passes in people url
+     * @throws Exception 
+     */
     public void sendPeopleGet(String desigs, String states) throws Exception {
-        String baseURL = "https://developer.nps.gov/api/v1/people?parkCode=";
-        baseURL += desigs;
-        baseURL += "&stateCode=" + states;
-        baseURL += "&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
-        URL url = new URL(baseURL);
-        String userName = "admin";
-        String password = "admin";
-        String authentication = "CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
-
-        HttpURLConnection connection = null;
-        connection = (HttpsURLConnection) url.openConnection();
-        ((HttpsURLConnection) connection).setHostnameVerifier(new VCenterSearchRequest.MyHostnameVerifier());
-        connection.setRequestProperty("Content-Type", "text/plain; charset=\"utf8\"");
-        connection.setRequestMethod("GET");
-        BASE64Encoder encoder = new BASE64Encoder();
-        String encoded = encoder.encode((authentication).getBytes("UTF-8"));
-        connection.setRequestProperty("Authorization", encoded);
-        connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
-        connection.setDoOutput(true);
-        connection.connect();
-
-        int responseCode = connection.getResponseCode();
-        InputStream input = (InputStream) connection.getContent();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"), 8);
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line + "\n");
-        }
-        jsonString = sb.toString();
-        jsonString = jsonString.replaceAll("\'", "&#39");
+        openConnection(createURL("https://developer.nps.gov/api/v1/people?parkCode="));
         parsePeoplePlaceJSON("Person");
     }
 
+    /**
+     * passes in places url
+     * @throws Exception 
+     */
     public void sendPlaceGet(String desigs, String states) throws Exception {
-        String baseURL = "https://developer.nps.gov/api/v1/places?parkCode=";
-        baseURL += desigs;
-        baseURL += "&stateCode=" + states;
-        baseURL += "&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
-        URL url = new URL(baseURL);
-        String userName = "admin";
-        String password = "admin";
-        String authentication = "CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
-
-        HttpURLConnection connection = null;
-        connection = (HttpsURLConnection) url.openConnection();
-        ((HttpsURLConnection) connection).setHostnameVerifier(new VCenterSearchRequest.MyHostnameVerifier());
-        connection.setRequestProperty("Content-Type", "text/plain; charset=\"utf8\"");
-        connection.setRequestMethod("GET");
-        BASE64Encoder encoder = new BASE64Encoder();
-        String encoded = encoder.encode((authentication).getBytes("UTF-8"));
-        connection.setRequestProperty("Authorization", encoded);
-        connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
-        connection.setDoOutput(true);
-        connection.connect();
-
-        int responseCode = connection.getResponseCode();
-        InputStream input = (InputStream) connection.getContent();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"), 8);
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line + "\n");
-        }
-        jsonString = sb.toString();
-        jsonString = jsonString.replaceAll("\'", "&#39");
+        openConnection(createURL("https://developer.nps.gov/api/v1/places?parkCode="));
         parsePeoplePlaceJSON("Place");
     }
 
+    /**
+     * parses lesson plans JSON and adds objects to arraylist
+     * @throws Exception 
+     */
     public void parseLessonJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");
@@ -196,6 +180,10 @@ public class EdSearchRequest {
         }
     }
 
+    /**
+     * parses people/place JSON and adds objects to arraylist
+     * @throws Exception 
+     */
     public void parsePeoplePlaceJSON(String key) throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");

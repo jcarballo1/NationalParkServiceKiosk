@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 import java.io.IOException;
@@ -14,8 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author jcarb
+ * CEServletPost
+ * @author Jennifer Carballo
+ * Prints result from Pre-Servlet to JSP result page
  */
 public class CEServletPost extends HttpServlet {
 
@@ -30,17 +26,19 @@ public class CEServletPost extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            ArrayList<CESearchResult> res = (ArrayList<CESearchResult>) request.getAttribute("res");
-            out.println("<ul class=\"alt\">");
+            ArrayList<CESearchResult> res = (ArrayList<CESearchResult>) request.getAttribute("res"); //grabs result created from request class
+            
+            out.println("<ul class=\"alt\">"); //for listing
             if (res.size() < 1) {
                 out.println("<li>No results matched your request. Please try again.<li>");
             } else {
                 for (int i = 0; i < res.size(); i++) {
                     out.println("<li>Type: " + res.get(i).getType() + "<br><br>");
-                    if (res.get(i).getType().equals("Alert")) {
+                    if (res.get(i).getType().equals("Alert")) { //process for alerts
                         if (!res.get(i).getTitle().equals("")) {
                             out.println(res.get(i).getTitle() + "<br><br>");
                         }
@@ -57,7 +55,7 @@ public class CEServletPost extends HttpServlet {
                             out.println("For more information please visit:<br>");
                             out.println("<a href=\"" + res.get(i).getUrl() + "\"> Official " + res.get(i).getCategory() + " Alert Page</a>");
                         }
-                    } else if (res.get(i).getType().equals("Article")) {
+                    } else if (res.get(i).getType().equals("Article")) { //process for articles
                         if (!res.get(i).getTitle().equals("")) {
                             out.println(res.get(i).getTitle() + "<br>");
                         }
@@ -74,7 +72,7 @@ public class CEServletPost extends HttpServlet {
                             out.println("<br>For more information:<br>");
                             out.println("<a href=\"" + res.get(i).getUrl() + "\">Official Article</a>");
                         }
-                    } else if (res.get(i).getType().equals("Event")) {
+                    } else if (res.get(i).getType().equals("Event")) { //process for events
                         if (!res.get(i).getTitle().equals("")) {
                             out.println(res.get(i).getTitle() + "<br>");
                         }
@@ -119,7 +117,7 @@ public class CEServletPost extends HttpServlet {
                             out.println("<br>For more information please visit:<br>");
                             out.println("<a href=\"" + res.get(i).getUrl() + "\"> Official " + res.get(i).getTitle() + " Event Page</a>");
                         }
-                    } else {
+                    } else { //process for news releases
                         if (!res.get(i).getTitle().equals("")) {
                             out.println(res.get(i).getTitle() + "<br>");
                         }
@@ -137,12 +135,12 @@ public class CEServletPost extends HttpServlet {
                             out.println("<a href=\"" + res.get(i).getUrl() + "\"> Official News Release Page</a>");
                         }
                     }
-                    out.println("</li>");
+                    out.println("</li>"); //end of single result
                 }
             }
-            out.println("</ul>");
+            out.println("</ul>"); //end
         } finally {
-
+            //do nothing
         }
     }
 

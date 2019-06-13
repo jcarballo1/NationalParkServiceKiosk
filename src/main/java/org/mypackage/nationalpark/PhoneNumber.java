@@ -1,19 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 /**
- *
- * @author jcarb
+ * PhoneNumber
+ * @author Jennifer Carballo
+ * Object contains number and number type
  */
 public class PhoneNumber {
 
     private String number;
     private String type;
 
+    /**
+     * Constructor for PhoneNumber object
+     * @param n
+     * @param t 
+     */
     public PhoneNumber(String n, String t) {
         number = n;
         type = t;

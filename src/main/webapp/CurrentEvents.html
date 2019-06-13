@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
-<!--
-        Industrious by TEMPLATED
-        templated.co @templatedco
-        Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+<!--       
+    Document    : CurrentEvents
+    Author      : Jennifer Carballo
+    Description : HTML page that presents and requests search query; passes input to Pre-Servlet
+    Template    : Industrious by TEMPLATED
 -->
 <html>
     <head>
@@ -36,7 +37,7 @@
             </ul>
         </nav>
 
-        <!-- Heading -->
+        <!-- Heading w/ Custom Styling -->
         <div id="heading" style="background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url(images/Event.jpg); background-position: bottom">
             <h1>Current Events</h1>
         </div>
@@ -48,7 +49,8 @@
                     <h2>Keep Up With Alerts, News Releases & More.</h2>
                     <p>Search keywords or select your destination or state of choice below. <b>It may take a few seconds.</b></p>
                 </header>
-
+                
+                <!-- Back to Top Button Functionality -->
                 <script>
                     // When the user scrolls down 20px from the top of the document, show the button
                     window.onscroll = function () {
@@ -74,6 +76,7 @@
 
                 <div class="content">
                     <form name="General Search" action="CEServletPre">
+                        <!-- Keyword Search Bar -->
                         <div style="margin-bottom: 30px">
                             <div class="row">
                                 <div class="col-12">
@@ -81,8 +84,9 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="row">
+                            <!-- Destination Drop Down -->
                             <div class="col-5">
                                 <select name="destination" id="destination">
                                     <option value="">- All Destinations -</option>
@@ -635,7 +639,8 @@
                                     </optgroup>
                                 </select>
                             </div>
-
+                            
+                            <!-- State Drop Down -->
                             <div class="col-3">
                                 <select name="state" id="state">
                                     <option value="">All States</option>
@@ -715,7 +720,8 @@
                                     <option value="wy">Wyoming</option>
                                 </select>
                             </div>
-
+                            
+                            <!-- Type Drop Down -->
                             <div class="col-2">
                                 <select name="type" id="type">
                                     <option value="">All Types</option>
@@ -726,7 +732,8 @@
                                     <option value="nr">News Releases</option>
                                 </select>
                             </div>
-
+                            
+                            <!-- Search Submit Button -->
                             <div class="col-2">
                                 <input type="submit" value="Search" />
                             </div>
@@ -740,13 +747,16 @@
         <footer id="footer">
             <div class="inner">
                 <div class="content">
+                    <!-- Left of Footer-->
                     <section>
                         <h3>About this Web Application</h3>
                         <p>Created by Jennifer Carballo, the National Park Service Kiosk was built as part of Capital One's Software Engineering Summit application for the Summer of 2019. It turned out pretty good, despite being Jennifer's first web application development.</p>
                     </section>
-
+                    
+                    <!-- Blank Space -->
                     <section></section>
-
+                    
+                    <!-- Right of Footer-->
                     <section>
                         <h4>View The Code</h4>
                         <ul class="plain">

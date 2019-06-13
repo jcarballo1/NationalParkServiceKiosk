@@ -1,10 +1,5 @@
 package org.mypackage.nationalpark;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,8 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author jcarb
+ * GalleryServletPre
+ * @author Jennifer Carballo
+ * Servlet to process request and send result to JSP result page
  */
 public class GalleryServletPre extends HttpServlet {
 
@@ -34,15 +30,17 @@ public class GalleryServletPre extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
             String desig = request.getParameter("destination");
+            
             GalleryRequest req = new GalleryRequest();
-            ArrayList<Image> result = req.sendGet(desig);
-            request.setAttribute("res", result);
+            ArrayList<Image> result = req.sendGet(desig); //passes in search query
+            request.setAttribute("res", result); //sets result to be accessed by JSP
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher("GalleryResultPage.jsp");
             dispatcher.forward(request, response);
         } finally {
+            //do nothing
         }
     }
 

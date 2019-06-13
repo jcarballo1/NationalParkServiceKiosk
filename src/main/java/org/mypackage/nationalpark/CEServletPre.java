@@ -1,27 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author jcarb
+ * CEServletPre
+ * @author Jennifer Carballo
+ * Servlet to process request and send result to JSP result page
  */
-@WebServlet(name = "CEServlet", urlPatterns = {"/CEServlet"})
 public class CEServletPre extends HttpServlet {
 
     /**
@@ -35,20 +28,23 @@ public class CEServletPre extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        
+        response.setContentType("text/html;charset=UTF-8");   
         try {
             String desig = request.getParameter("destination");
             String state = request.getParameter("state");
             String keyword = request.getParameter("keyword");
             String type = request.getParameter("type");
-            String[] keys = keyword.split(" ");
-            CESearchRequest req = new CESearchRequest();//Creating class Object
-            ArrayList<CESearchResult> res = req.process(keys, desig, state, type);
-            request.setAttribute("res", res);
+            String[] keys = keyword.split(" "); //split multiple word keyword search
+            
+            CESearchRequest req = new CESearchRequest(); //Creating class Object
+            ArrayList<CESearchResult> res = req.process(keys, desig, state, type); //passes in search query
+            request.setAttribute("res", res); //sets result to be accessed by JSP page
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher("CEResultPage.jsp");
             dispatcher.forward(request, response);
         } finally {
+            // do nothing
         }
     }
 

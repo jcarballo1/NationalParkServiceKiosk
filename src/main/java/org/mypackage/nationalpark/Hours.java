@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 import java.util.Map;
 
 /**
- *
- * @author jcarb
+ * Hours
+ * @author Jennifer Carballo
+ * Object contains name, description, and standard hours
  */
 public class Hours {
 
@@ -17,6 +13,12 @@ public class Hours {
     private String des;
     private Map<String, String> stanHours;
 
+    /**
+     * Constructor for Hours object
+     * @param n
+     * @param d
+     * @param h 
+     */
     public Hours(String n, String d, Map<String, String> h) {
         name = n;
         des = d;

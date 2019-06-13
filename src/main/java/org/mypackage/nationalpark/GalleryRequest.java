@@ -14,14 +14,12 @@ import org.json.JSONObject;
 import org.mypackage.nationalpark.MapResult;
 import sun.misc.BASE64Encoder;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author jcarb
+ * GalleryRequest
+ * @author Jennifer Carballo
+ * Process Gallery search query, opens
+ * connection to NPS API call, parses returned JSON result, creates necessary
+ * object with the information to be displayed later
  */
 public class GalleryRequest {
 
@@ -36,6 +34,12 @@ public class GalleryRequest {
         }
     }
 
+    /**
+     * Opens connection through api url and stores resulted json and calls to be parsed
+     * @param desig
+     * @return arraylist of images
+     * @throws Exception 
+     */
     public ArrayList<Image> sendGet(String desig) throws Exception {
         String baseURL = "https://developer.nps.gov/api/v1/parks?parkCode=";
         baseURL += desig;
@@ -67,10 +71,15 @@ public class GalleryRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
+        
         parseJSON();
         return images;
     }
 
+    /**
+     * parses JSON and creates and adds Image objects to arraylist
+     * @throws Exception 
+     */
     public void parseJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");

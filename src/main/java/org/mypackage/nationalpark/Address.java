@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 /**
- *
- * @author jcarb
+ * Address
+ * @author Jennifer Carballo 
+ * Object contains address lines 1-3, city, state,
+ * postal code, and type of address
  */
 public class Address {
 
@@ -19,6 +16,15 @@ public class Address {
     private String zip;
     private String type;
 
+    /**
+     * Constructor of Address object
+     *
+     * @param lines 1-3
+     * @param city
+     * @param state
+     * @param zipcode
+     * @param type
+     */
     public Address(String l1, String l2, String l3, String c, String s, String z, String t) {
         line1 = l1;
         line2 = l2;

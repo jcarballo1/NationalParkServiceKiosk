@@ -1,30 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.mypackage.nationalpark;
 
 /**
- *
- * @author jcarb
+ * Image
+ * @author Jennifer Carballo
+ * Object contains url, caption, and credit
  */
 public class Image {
 
-    private String url;
-    private String caption;
-    private String cred;
+    private String url = "";
+    private String caption = "";
+    private String cred = "";
 
+    /**
+     * Constructor for Image with credit passed in
+     * @param u
+     * @param cap
+     * @param cre 
+     */
     public Image(String u, String cap, String cre) {
         url = u;
         caption = cap;
         cred = cre;
     }
 
+    /**
+     * Constructor for Image without credit passed in
+     * @param u
+     * @param cap 
+     */
     public Image(String u, String cap) {
         url = u;
         caption = cap;
-        cred = "";
     }
 
     /**
