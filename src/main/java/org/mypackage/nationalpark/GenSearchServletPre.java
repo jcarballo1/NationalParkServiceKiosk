@@ -33,11 +33,12 @@ public class GenSearchServletPre extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String desig = request.getParameter("destination");
+            String destin = request.getParameter("destination");
             String state = request.getParameter("state");
+            String desig = request.getParameter("designation");
             
             GenSearchRequest req = new GenSearchRequest();//Creating class Object
-            ArrayList<GeneralSearchResult> res = req.sendGetSingle(desig, state); //passes in search query
+            ArrayList<GeneralSearchResult> res = req.sendGetSingle(destin, state, desig); //passes in search query
             request.setAttribute("res", res); //sets result to be accessed by jsp
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("GeneralSearchResultPage.jsp");

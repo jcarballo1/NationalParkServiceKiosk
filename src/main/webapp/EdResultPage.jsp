@@ -56,7 +56,7 @@
         <div class="inner">
             <header class="special">
                 <h2>Learn About Your Destination.</h2>
-                <p>Select your destination <b>-OR-</b> state of choice below.</p>
+                <p>Select your destination <b>-OR-</b> state of choice below.<br>If searching by keyword, specify a type or state for accurate results.</p>
             </header>
 
             <!-- Back to Top Button Functionality -->
@@ -85,6 +85,14 @@
 
             <div class="content">
                 <form name="General Search" action="EdServletPre">
+                    <div style="margin-bottom: 30px">
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="text" name="keyword" placeholder="Keyword Search" />
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-5">
                             <select name="destination" id="destination">
@@ -721,7 +729,7 @@
 
                         <div class="col-2">
                             <select name="type" id="type">
-                                <option value="">All Types</option>
+                                <option value="both">All Types</option>
 
                                 <option value="less">Lesson Plans</option>
                                 <option value="peop">People</option>

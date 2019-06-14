@@ -35,7 +35,7 @@ public class GenSearchServletPost extends HttpServlet {
             
             out.println("<ul class=\"alt\">"); //for listing
             if (res.size() < 1) {
-                out.println("<li>No results matched your request. Please try again.<li>");
+                out.println("<li>No results matched your request.<li>");
             } else {
                 for (int i = 0; i < res.size(); i++) {
                     out.println("<li>" + res.get(i).getName() + "<br><br>");
@@ -119,12 +119,12 @@ public class GenSearchServletPost extends HttpServlet {
                         }
                     }
 
-                    if (res.get(i).getWeather() != "") {
+                    if (!res.get(i).getWeather().equals("")) {
                         out.println("<br>Weather Info:");
                         out.println("<br>" + res.get(i).getWeather());
                     }
 
-                    if (res.get(i).getUrl() != "") {
+                    if (!res.get(i).getUrl().equals("")) {
                         out.println("<br><br>For information please visit:");
                         out.println("<br>");
                         out.println("<a href=\"" + res.get(i).getUrl() + "\"> Official " + res.get(i).getName() + " Page</a>");

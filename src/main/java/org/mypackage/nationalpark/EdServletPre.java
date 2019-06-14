@@ -35,10 +35,12 @@ public class EdServletPre extends HttpServlet {
         try {
             String desig = request.getParameter("destination");
             String state = request.getParameter("state");
+            String keyword = request.getParameter("keyword");
+            String[] keys = keyword.split(" "); //split multiple word keyword search
             String key = request.getParameter("type");
             
             EdSearchRequest req = new EdSearchRequest();//Creating class Object
-            ArrayList<EdSearchResult> res = req.process(desig, state, key); //passes in search query
+            ArrayList<EdSearchResult> res = req.process(keys, desig, state, key); //passes in search query
             request.setAttribute("res", res); //sets result to be accessed by jsp
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("EdResultPage.jsp");

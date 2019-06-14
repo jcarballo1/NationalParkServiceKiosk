@@ -32,7 +32,7 @@ public class EdServletPost extends HttpServlet {
             ArrayList<EdSearchResult> res = (ArrayList<EdSearchResult>) request.getAttribute("res");
             out.println("<ul class=\"alt\">");
             if (res.size() < 1) {
-                out.println("<li>No results matched your request. Please try again.<li>");
+                out.println("<li>No results matched your request.<li>");
             } else {
                 for (int i = 0; i < res.size(); i++) {
                     out.println("<li>Type: " + res.get(i).getType() + "<br><br>");

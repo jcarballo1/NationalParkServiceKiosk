@@ -26,6 +26,7 @@ public class EdSearchRequest {
     private String jsonString;
     private String desigs;
     private String states;
+    private String keywords[];
 
     public static class MyHostnameVerifier implements HostnameVerifier {
 
@@ -38,16 +39,18 @@ public class EdSearchRequest {
     /**
      * Processes search query and opens connections to api based on type
      * requested
+     * @param keys
      * @param ds
      * @param sts
      * @param key
      * @return
      * @throws Exception 
      */
-    public ArrayList<EdSearchResult> process(String ds, String sts, String key) throws Exception {
+    public ArrayList<EdSearchResult> process(String[] keys, String ds, String sts, String key) throws Exception {
         results = new ArrayList<>();
         desigs = ds;
         states = sts;
+        keywords = keys;
         if (key.equals("")) {
             sendLessonGet(desigs, states);
             sendPeopleGet(desigs, states);
@@ -104,6 +107,18 @@ public class EdSearchRequest {
     public URL createURL(String baseURL) throws Exception {
         baseURL += desigs;
         baseURL += "&stateCode=" + states;
+        
+        if (!keywords[0].equals("")) {
+            baseURL += "&q=";
+            for (int i = 0; i < keywords.length; i++) {
+                if (i == keywords.length - 1) {
+                    baseURL += keywords[i];
+                } else {
+                    baseURL += keywords[i] + "%20";
+                }
+            }
+        }
+        
         baseURL += "&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
         URL url = new URL(baseURL);
         return url;
