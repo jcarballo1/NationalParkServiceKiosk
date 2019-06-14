@@ -57,7 +57,7 @@
         <div class="inner">
             <header class="special">
                 <h2>Get Visitor Center Locations, Operating Hours, & More.</h2>
-                <p>Search keywords <b>-OR-</b> select your destination <b>-OR-</b> state of choice below.</p>
+                <p>Select your destination <b>-OR-</b> state of choice below.<br>If searching by keyword, specify a type or state for accurate results.</p>
             </header>
 
             <!-- Back to Top Button Functionality -->
