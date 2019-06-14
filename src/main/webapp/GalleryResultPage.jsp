@@ -89,8 +89,6 @@
                         <div class="row">
                             <div class="col-10">
                                 <select name="destination" id="destination">
-                                    <option value="">- All Destinations -</option>
-
                                     <optgroup label="A">
                                         <option value="abli">Abraham Lincoln Birthplace National Historical Park</option>
                                         <option value="acad">Acadia National Park</option>

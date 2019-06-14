@@ -92,7 +92,6 @@ public class VCServletPost extends HttpServlet {
                             out.println("<br>");
                         }
 
-                        out.println("<br>Amenities:");
                         if (!res.get(i).getToilets().equals("")) {
                             out.println("<br>Toilets: " + res.get(i).getToilets());
                         }
@@ -110,7 +109,7 @@ public class VCServletPost extends HttpServlet {
                         }
 
                         if (!res.get(i).getWeather().equals("")) {
-                            out.println("<br><br>" + res.get(i).getWeather() + "<br>");
+                            out.println("<br>Weather Info:<br>" + res.get(i).getWeather() + "<br>");
                         }
 
                         if (!res.get(i).getFees().equals("") && !res.get(i).getFees().equals("0")) {
