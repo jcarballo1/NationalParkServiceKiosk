@@ -56,8 +56,8 @@
         <section id="main" class="wrapper">
             <div class="inner">
                 <header class="special">
-                    <h2>View photos of your destination.</h2
-                    <p>Select your destination below. <b>It may take a few seconds.</b></p>
+                    <h2>View photos of your destination.</h2>
+                    <p>Select your destination below.</p>
                 </header>
                 
                 <!-- Back to Top Button Functionality -->
@@ -801,7 +801,7 @@
             <div class="content">
                 <section>
                     <h3>About this Web Application</h3>
-                    <p>Created by Jennifer Carballo, the National Park Service Kiosk was built as part of Capital One's Software Engineering Summit application for the Summer of 2019. It turned out pretty good, despite being Jennifer's first web application development.</p>
+                    <p>Created by Jennifer Carballo, the National Park Service Kiosk was built as part of Capital One's Software Engineering Summit application for the Summer of 2019.</p>
                 </section>
 
                 <section></section>

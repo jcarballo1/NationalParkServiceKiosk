@@ -16,7 +16,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <title>Education Central</title>
+        <title>Destination Education</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta name="description" content="" />
@@ -48,7 +48,7 @@
 
     <!-- Heading w/ Custom Styling -->
     <div id="heading" style="background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url(images/Education.jpg); background-position: bottom">
-        <h1>Education Central</h1>
+        <h1>Destination Education</h1>
     </div>
 
     <!-- Main -->
@@ -56,7 +56,7 @@
         <div class="inner">
             <header class="special">
                 <h2>Learn About Your Destination.</h2>
-                <p>Select your destination or state of choice below. <b>It may take a few seconds.</b></p>
+                <p>Select your destination <b>-OR-</b> state of choice below.</p>
             </header>
 
             <!-- Back to Top Button Functionality -->
@@ -764,7 +764,7 @@
             <div class="content">
                 <section>
                     <h3>About this Web Application</h3>
-                    <p>Created by Jennifer Carballo, the National Park Service Kiosk was built as part of Capital One's Software Engineering Summit application for the Summer of 2019. It turned out pretty good, despite being Jennifer's first web application development.</p>
+                    <p>Created by Jennifer Carballo, the National Park Service Kiosk was built as part of Capital One's Software Engineering Summit application for the Summer of 2019.</p>
                 </section>
 
                 <section></section>
