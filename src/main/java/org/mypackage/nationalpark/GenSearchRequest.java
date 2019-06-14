@@ -127,13 +127,13 @@ public class GenSearchRequest {
             curr = subObj.getJSONArray("entranceFees");
             for (j = 0; j < curr.length(); j++) {
                 currObj = curr.optJSONObject(j);
-                fees.add(new EntranceFee(currObj.getString("cost"), currObj.getString("description"), currObj.getString("title")));
+                fees.add(new EntranceFee(currObj.getString("cost").substring(0, currObj.getString("cost").length()-2), currObj.getString("description"), currObj.getString("title"))); //substring makes cost to two decimals
             }
 
             curr = subObj.getJSONArray("entrancePasses");
             for (j = 0; j < curr.length(); j++) {
                 currObj = curr.optJSONObject(j);
-                passes.add(new EntrancePass(currObj.getString("cost"), currObj.getString("description"), currObj.getString("title")));
+                passes.add(new EntrancePass(currObj.getString("cost").substring(0, currObj.getString("cost").length()-2), currObj.getString("description"), currObj.getString("title"))); //substring makes cost to two decimals
             }
 
             curr = subObj.getJSONArray("images");
@@ -151,8 +151,10 @@ public class GenSearchRequest {
                     Iterator<String> iter = hoursArray.keys();
                     while (iter.hasNext()) {
                         String key = iter.next();
+                        String s1 = key.substring(0, 1).toUpperCase(); //capitalize first letter
+                        String capKey = s1 + key.substring(1);
                         String val = hoursArray.getString(key);
-                        stan.put(key, val);
+                        stan.put(capKey, val);
                     }
                     hours.add(new Hours(currObj.getString("name"), currObj.getString("description"), stan));
                 }

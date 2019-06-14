@@ -653,11 +653,22 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12">                       
                         <!-- Map from Google Maps API -->
                         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2C3nj6shFaou4TBmgevRbKL3p5aN4UxY&v=3.exp&sensor=false"></script>
                         
                         <!-- Coordinate input processing and Map Functionality -->
+                        <%
+                            //check if corrdinates are available
+                            boolean show = true;
+                            if (request.getAttribute("latitude") == "" || request.getAttribute("longitude") == "") {
+                                out.println("<ul class=\"alt\">");
+                                out.println("<li>No coordinates could be found. Please try a different destination.<li>");
+                                out.println("</ul>");
+                                show = false;
+                            } 
+                        %>
+                        
                         <script>
                             var map;
                             function initialize() {
@@ -674,11 +685,16 @@
                                     title: 'Destination'
                                 });
                             }
-
                             google.maps.event.addDomListener(window, 'load', initialize);
                         </script>
-                                    
-                        <div id="map-canvas" style="height:500px;"></div>
+                                        
+                        <%
+                            //only produce map if coordinates are found
+                            if(show){
+                                out.println("<div id=\"map-canvas\" style=\"height:500px;\"></div>");
+                            }
+                        %>
+                        
                     </div>
                 </div>
             </div>

@@ -345,11 +345,6 @@ public class CESearchRequest {
             }
 
             try {
-                title = subObj.getString("title");
-            } catch (Exception e) {
-            }
-
-            try {
                 fees = subObj.getString("feeinfo");
             } catch (Exception e) {
             }

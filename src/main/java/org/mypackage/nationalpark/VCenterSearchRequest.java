@@ -217,8 +217,10 @@ public class VCenterSearchRequest {
                         Iterator<String> iter = hoursArray.keys();
                         while (iter.hasNext()) {
                             String key = iter.next();
+                            String s1 = key.substring(0, 1).toUpperCase(); //capitalize first letter
+                            String capKey = s1 + key.substring(1);
                             String val = hoursArray.getString(key);
-                            stan.put(key, val);
+                            stan.put(capKey, val);
                         }
                         hours.add(new Hours(currObj.getString("name"), currObj.getString("description"), stan));
                     }

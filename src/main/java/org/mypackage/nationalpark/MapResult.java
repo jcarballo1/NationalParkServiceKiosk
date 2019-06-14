@@ -19,8 +19,13 @@ public class MapResult {
     public MapResult(String n, String coords) {
         name = n;
         String[] array = coords.split(", ");
-        latitude = array[0].substring(4);
-        longitude = array[1].substring(5);
+        if(array.length > 1){
+            latitude = array[0].substring(4);
+            longitude = array[1].substring(5);
+        } else{
+            latitude = "";
+            longitude = "";
+        }
     }
 
     /**
