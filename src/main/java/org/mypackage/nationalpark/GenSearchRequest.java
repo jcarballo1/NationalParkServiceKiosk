@@ -20,8 +20,8 @@ import org.json.*;
 
 /**
  * GenSearchRequest
- * @author Jennifer Carballo 
- * Process General Search search query, opens
+ *
+ * @author Jennifer Carballo Process General Search search query, opens
  * connection to NPS API call, parses returned JSON result, creates necessary
  * object with the information to be displayed later
  */
@@ -85,7 +85,8 @@ public class GenSearchRequest {
 
     /**
      * parses JSON and adds objects to arraylist
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     public void parseJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
@@ -101,62 +102,113 @@ public class GenSearchRequest {
             ArrayList<Hours> hours = new ArrayList<>();
 
             JSONObject subObj = array.getJSONObject(i);
-
-            JSONArray curr = subObj.getJSONArray("addresses");
+            JSONArray curr = null;
             JSONObject currObj;
+            boolean good = true;
             int j;
-            for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(j);
-                addies.add(new Address(currObj.getString("line1"), currObj.getString("line2"), currObj.getString("line3"), currObj.getString("city"),
-                        currObj.getString("stateCode"), currObj.getString("postalCode"), currObj.getString("type"))); //PROBLEM HERE
-            }
 
-            JSONObject con = subObj.getJSONObject("contacts");
-            curr = con.getJSONArray("phoneNumbers");
-            for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(j);
-                numbers.add(new PhoneNumber(currObj.getString("phoneNumber"), currObj.getString("type")));
+            try {
+                curr = subObj.getJSONArray("addresses");
+            } catch (Exception e) {
+                good = false;
             }
-
-            curr = con.getJSONArray("emailAddresses");
-            for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(j);
-                emails.add(currObj.getString("emailAddress"));
-            }
-
-            curr = subObj.getJSONArray("entranceFees");
-            for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(j);
-                fees.add(new EntranceFee(currObj.getString("cost").substring(0, currObj.getString("cost").length()-2), currObj.getString("description"), currObj.getString("title"))); //substring makes cost to two decimals
-            }
-
-            curr = subObj.getJSONArray("entrancePasses");
-            for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(j);
-                passes.add(new EntrancePass(currObj.getString("cost").substring(0, currObj.getString("cost").length()-2), currObj.getString("description"), currObj.getString("title"))); //substring makes cost to two decimals
-            }
-
-            curr = subObj.getJSONArray("images");
-            for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(j);
-                images.add(new Image(currObj.getString("url"), currObj.getString("caption"), currObj.getString("credit")));
-            }
-
-            curr = subObj.getJSONArray("operatingHours");
-            if (curr.length() > 0) {
-                for (j = 0; j < 1; j++) {
+            if (good) {
+                for (j = 0; j < curr.length(); j++) {
                     currObj = curr.optJSONObject(j);
-                    JSONObject hoursArray = currObj.getJSONObject("standardHours");
-                    Map<String, String> stan = new HashMap<>();
-                    Iterator<String> iter = hoursArray.keys();
-                    while (iter.hasNext()) {
-                        String key = iter.next();
-                        String s1 = key.substring(0, 1).toUpperCase(); //capitalize first letter
-                        String capKey = s1 + key.substring(1);
-                        String val = hoursArray.getString(key);
-                        stan.put(capKey, val);
+                    addies.add(new Address(currObj.getString("line1"), currObj.getString("line2"), currObj.getString("line3"), currObj.getString("city"),
+                            currObj.getString("stateCode"), currObj.getString("postalCode"), currObj.getString("type"))); //PROBLEM HERE
+                }
+            }
+
+            good = true;
+            JSONObject con = null;
+            try {
+                con = subObj.getJSONObject("contacts");
+            } catch (Exception e) {
+                good = false;
+            }
+            if (good) {
+                curr = con.getJSONArray("phoneNumbers");
+                for (j = 0; j < curr.length(); j++) {
+                    currObj = curr.optJSONObject(j);
+                    numbers.add(new PhoneNumber(currObj.getString("phoneNumber"), currObj.getString("type")));
+                }
+            }
+
+            good = true;
+            try {
+                curr = con.getJSONArray("emailAddresses");
+            } catch (Exception e) {
+                good = false;
+            }
+            if (good) {
+                for (j = 0; j < curr.length(); j++) {
+                    currObj = curr.optJSONObject(j);
+                    emails.add(currObj.getString("emailAddress"));
+                }
+            }
+
+            good = true;
+            try {
+                curr = subObj.getJSONArray("entranceFees");
+            } catch (Exception e) {
+                good = false;
+            }
+            if (good) {
+                for (j = 0; j < curr.length(); j++) {
+                    currObj = curr.optJSONObject(j);
+                    fees.add(new EntranceFee(currObj.getString("cost").substring(0, currObj.getString("cost").length() - 2), currObj.getString("description"), currObj.getString("title"))); //substring makes cost to two decimals
+                }
+            }
+
+            good = true;
+            try {
+                curr = subObj.getJSONArray("entrancePasses");
+            } catch (Exception e) {
+                good = false;
+            }
+            if (good) {
+                for (j = 0; j < curr.length(); j++) {
+                    currObj = curr.optJSONObject(j);
+                    passes.add(new EntrancePass(currObj.getString("cost").substring(0, currObj.getString("cost").length() - 2), currObj.getString("description"), currObj.getString("title"))); //substring makes cost to two decimals
+                }
+            }
+
+            good = true;
+            try {
+                curr = subObj.getJSONArray("images");
+            } catch (Exception e) {
+                good = false;
+            }
+            if (good) {
+                for (j = 0; j < curr.length(); j++) {
+                    currObj = curr.optJSONObject(j);
+                    images.add(new Image(currObj.getString("url"), currObj.getString("caption"), currObj.getString("credit")));
+                }
+            }
+
+            good = true;
+            try {
+                curr = subObj.getJSONArray("operatingHours");
+            } catch (Exception e) {
+                good = false;
+            }
+            if (good) {
+                if (curr.length() > 0) {
+                    for (j = 0; j < 1; j++) {
+                        currObj = curr.optJSONObject(j);
+                        JSONObject hoursArray = currObj.getJSONObject("standardHours");
+                        Map<String, String> stan = new HashMap<>();
+                        Iterator<String> iter = hoursArray.keys();
+                        while (iter.hasNext()) {
+                            String key = iter.next();
+                            String s1 = key.substring(0, 1).toUpperCase(); //capitalize first letter
+                            String capKey = s1 + key.substring(1);
+                            String val = hoursArray.getString(key);
+                            stan.put(capKey, val);
+                        }
+                        hours.add(new Hours(currObj.getString("name"), currObj.getString("description"), stan));
                     }
-                    hours.add(new Hours(currObj.getString("name"), currObj.getString("description"), stan));
                 }
             }
 

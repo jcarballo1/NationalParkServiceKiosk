@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * GalleryServletPost
- * @author Jennifer Carballo
+ * @author Jennifer Carballo 
  * Prints result from Pre-Servlet to JSP result page
  */
 public class GalleryServletPost extends HttpServlet {
@@ -26,39 +26,45 @@ public class GalleryServletPost extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             ArrayList<Image> result = (ArrayList<Image>)request.getAttribute("res");
-            
-            out.println("<div class=\"row\">");
-            out.println("<div class=\"col-12\">");
-            out.println("<h3>" + result.get(0).getCred() + "</h3>");
-            out.println("</div>");
-            out.println("</div>");
-            out.println("<div class=\"row\">");
-            out.println("<div class=\"col-12\">");
 
-            out.println("<!-- Slideshow -->");
-            out.println("<div class=\"slideshow-container\">");
-            int total = result.size();
-            for (int i = 0; i < result.size(); i++) {
-                out.println("<div class=\"mySlides fade\">");
-                out.println("<div class=\"numbertext\">" + (i + 1) + "/" + total + "</div>");
-                out.println("<img src=\"" + result.get(i).getUrl() + "\" style=\"width:100%\">");
-                out.println("<div class=\"text\">" + result.get(i).getCaption() + "</div>");
+            if (result.size() < 0) {
+                out.println("<ul class=\"alt\">");
+                out.println("<li>No images could be found. Please try a different destination.<li>");
+                out.println("</ul>");
+            } else {
+                out.println("<div class=\"row\">");
+                out.println("<div class=\"col-12\">");
+                out.println("<h3>" + result.get(0).getCred() + "</h3>");
+                out.println("</div>");
+                out.println("</div>");
+                out.println("<div class=\"row\">");
+                out.println("<div class=\"col-12\">");
+
+                out.println("<!-- Slideshow -->");
+                out.println("<div class=\"slideshow-container\">");
+                int total = result.size();
+                for (int i = 0; i < result.size(); i++) {
+                    out.println("<div class=\"mySlides fade\">");
+                    out.println("<div class=\"numbertext\">" + (i + 1) + "/" + total + "</div>");
+                    out.println("<img src=\"" + result.get(i).getUrl() + "\" style=\"width:100%\">");
+                    out.println("<div class=\"text\">" + result.get(i).getCaption() + "</div>");
+                    out.println("</div>");
+                }
+                out.println("<a class=\"prev\" onclick=\"plusSlides(-1)\">&#10094;</a>");
+                out.println("<a class=\"next\" onclick=\"plusSlides(1)\">&#10095;</a>");
+                out.println("</div>");
+                out.println("<br>");
+                out.println("<div style=\"text-align:center\">");
+                for (int j = 0; j < result.size(); j++) {
+                    out.println("<span class=\"dot\" onclick=\"currentSlide(" + (j + 1) + ")\"></span>");
+                }
                 out.println("</div>");
             }
-            out.println("<a class=\"prev\" onclick=\"plusSlides(-1)\">&#10094;</a>");
-            out.println("<a class=\"next\" onclick=\"plusSlides(1)\">&#10095;</a>");
-            out.println("</div>");
-            out.println("<br>");
-            out.println("<div style=\"text-align:center\">");
-            for (int j = 0; j < result.size(); j++) {
-                out.println("<span class=\"dot\" onclick=\"currentSlide(" + (j + 1) + ")\"></span>");
-            }
-            out.println("</div>");
         } finally {
             //do nothing
         }
