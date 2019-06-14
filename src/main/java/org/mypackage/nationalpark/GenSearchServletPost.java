@@ -43,7 +43,7 @@ public class GenSearchServletPost extends HttpServlet {
                     if (res.get(i).getImages().size() > 0) {
                         out.println("<img src=\"" + res.get(i).getImages().get(0).getUrl() + "\" height=200><br><br>");
                     }
-                    
+                    out.println("Addresses and Contact Info:<br>");
                     int j;
                     if (res.get(i).getAdds().size() > 0) {
                         for (j = 0; j < res.get(i).getAdds().size(); j++) {
