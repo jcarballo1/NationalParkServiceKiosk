@@ -1,13 +1,21 @@
-<!DOCTYPE HTML>
-<!--       
-    Document    : CurrentEvents
+<%--
+    Document    : VisitorCenter
     Author      : Jennifer Carballo
     Description : HTML page that presents and requests search query; passes input to Pre-Servlet
     Template    : Industrious by TEMPLATED
--->
+--%>
+
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="org.mypackage.nationalpark.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import ="org.mypackage.nationalpark.VCenterSearchRequest" language="java"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <title>Current Events</title>
+        <title>Visitor Centers</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta name="description" content="" />
@@ -28,29 +36,28 @@
         <nav id="menu">
             <ul class="links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="GeneralSearch.html">General Park Information</a></li>
-                <li><a href="VisitorCenter.html">Visitor Centers</a></li>
-                <li><a href="CurrentEvents.html">Current Events</a></li>
-                <li><a href="Education.html">Education</a></li>
-                <li><a href="Map.html">Map</a></li>
-                <li><a href="Gallery.html">Destination Gallery</a></li>
+                <li><a href="GeneralSearch.jsp">General Park Information</a></li>
+                <li><a href="VisitorCenter.jsp">Visitor Centers</a></li>
+                <li><a href="CurrentEvents.jsp">Current Events</a></li>
+                <li><a href="Education.jsp">Education</a></li>
+                <li><a href="Map.jsp">Map</a></li>
+                <li><a href="Gallery.jsp">Destination Gallery</a></li>
             </ul>
         </nav>
 
-        <!-- Heading w/ Custom Styling -->
-        <div id="heading" style="background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url(images/Event.jpg); background-position: bottom">
-            <h1>Current Events</h1>
+        <!-- Heading -->
+        <div id="heading" style="background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url(images/Campgrounds.jpg); background-position: bottom">
+            <h1>Visitor Center Information</h1>
         </div>
 
         <!-- Main -->
         <section id="main" class="wrapper">
             <div class="inner">
                 <header class="special">
-                    <h2>Keep Up With Alerts, News Releases & More.</h2>
+                    <h2>Get Visitor Center Locations, Operating Hours, & More.</h2>
                     <p>Select your destination <b>-OR-</b> state of choice below.<br>If searching by keyword, specify a type or state for accurate results.</p>
                 </header>
-                
-                <!-- Back to Top Button Functionality -->
+
                 <script>
                     // When the user scrolls down 20px from the top of the document, show the button
                     window.onscroll = function () {
@@ -75,8 +82,7 @@
                 <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
 
                 <div class="content">
-                    <form name="General Search" action="CEServletPre">
-                        <!-- Keyword Search Bar -->
+                    <form name="General Search" action="VCServletPre">
                         <div style="margin-bottom: 30px">
                             <div class="row">
                                 <div class="col-12">
@@ -84,12 +90,11 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
-                            <!-- Destination Drop Down -->
                             <div class="col-5">
                                 <select name="destination" id="destination">
-                                    <option value="">- All Destinations -</option>
+                                    <option value="">All Destinations</option>
 
                                     <optgroup label="A">
                                         <option value="abli">Abraham Lincoln Birthplace National Historical Park</option>
@@ -640,8 +645,11 @@
                                 </select>
                             </div>
                             
-                            <!-- State Drop Down -->
-                            <div class="col-3">
+                            <div class="col-1" style="margin-top: 14px">
+                                <p><b>-OR-</b></p>
+                            </div>
+                            
+                            <div class="col-2">
                                 <select name="state" id="state">
                                     <option value="">All States</option>
 
@@ -720,20 +728,16 @@
                                     <option value="wy">Wyoming</option>
                                 </select>
                             </div>
-                            
-                            <!-- Type Drop Down -->
+
                             <div class="col-2">
                                 <select name="type" id="type">
                                     <option value="">All Types</option>
 
-                                    <option value="alr">Alerts</option>
-                                    <option value="art">Articles</option>
-                                    <option value="ev">Events</option>
-                                    <option value="nr">News Releases</option>
+                                    <option value="vc">Visitor Centers</option>
+                                    <option value="camp">Campgrounds</option>
                                 </select>
                             </div>
-                            
-                            <!-- Search Submit Button -->
+
                             <div class="col-2">
                                 <input type="submit" value="Search" />
                             </div>
@@ -747,16 +751,13 @@
         <footer id="footer">
             <div class="inner">
                 <div class="content">
-                    <!-- Left of Footer-->
                     <section>
                         <h3>About this Web Application</h3>
                         <p>Created by Jennifer Carballo, the National Park Service Kiosk was built as part of Capital One's Software Engineering Summit application for the Summer of 2019.</p>
                     </section>
-                    
-                    <!-- Blank Space -->
+
                     <section></section>
-                    
-                    <!-- Right of Footer-->
+
                     <section>
                         <h4>View The Code</h4>
                         <ul class="plain">

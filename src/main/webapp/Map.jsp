@@ -1,10 +1,18 @@
-<!DOCTYPE HTML>
-<!--
+<%--
     Document    : Map
     Author      : Jennifer Carballo
     Description : HTML page that presents and requests search query; passes input to Pre-Servlet
     Template    : Industrious by TEMPLATED
--->
+--%>
+
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="org.mypackage.nationalpark.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import ="org.mypackage.nationalpark.MapRequest" language="java"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <title>Map Location</title>
@@ -28,12 +36,12 @@
         <nav id="menu">
             <ul class="links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="GeneralSearch.html">General Park Information</a></li>
-                <li><a href="VisitorCenter.html">Visitor Centers</a></li>
-                <li><a href="CurrentEvents.html">Current Events</a></li>
-                <li><a href="Education.html">Education</a></li>
-                <li><a href="Map.html">Map</a></li>
-                <li><a href="Gallery.html">Destination Gallery</a></li>
+                <li><a href="GeneralSearch.jsp">General Park Information</a></li>
+                <li><a href="VisitorCenter.jsp">Visitor Centers</a></li>
+                <li><a href="CurrentEvents.jsp">Current Events</a></li>
+                <li><a href="Education.jsp">Education</a></li>
+                <li><a href="Map.jsp">Map</a></li>
+                <li><a href="Gallery.jsp">Destination Gallery</a></li>
             </ul>
         </nav>
 

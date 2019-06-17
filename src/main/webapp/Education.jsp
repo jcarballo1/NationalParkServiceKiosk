@@ -1,14 +1,22 @@
-<!DOCTYPE HTML>
-<!--
-    Document    : VisitorCenter
+<%--
+    Document    : Education
     Author      : Jennifer Carballo
     Description : HTML page that presents and requests search query; passes input to Pre-Servlet
     Template    : Industrious by TEMPLATED
--->
+--%>
+
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="org.mypackage.nationalpark.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import ="org.mypackage.nationalpark.EdSearchRequest" language="java"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <title>Visitor Centers</title>
-        <meta charset="utf-8" />
+        <title>Destination Education</title>
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -28,28 +36,29 @@
         <nav id="menu">
             <ul class="links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="GeneralSearch.html">General Park Information</a></li>
-                <li><a href="VisitorCenter.html">Visitor Centers</a></li>
-                <li><a href="CurrentEvents.html">Current Events</a></li>
-                <li><a href="Education.html">Education</a></li>
-                <li><a href="Map.html">Map</a></li>
-                <li><a href="Gallery.html">Destination Gallery</a></li>
+                <li><a href="GeneralSearch.jsp">General Park Information</a></li>
+                <li><a href="VisitorCenter.jsp">Visitor Centers</a></li>
+                <li><a href="CurrentEvents.jsp">Current Events</a></li>
+                <li><a href="Education.jsp">Education</a></li>
+                <li><a href="Map.jsp">Map</a></li>
+                <li><a href="Gallery.jsp">Destination Gallery</a></li>
             </ul>
         </nav>
 
         <!-- Heading -->
-        <div id="heading" style="background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url(images/Campgrounds.jpg); background-position: bottom">
-            <h1>Visitor Center Information</h1>
+        <div id="heading" style="background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url(images/Education.jpg); background-position: bottom">
+            <h1>Destination Education</h1>
         </div>
 
         <!-- Main -->
         <section id="main" class="wrapper">
             <div class="inner">
                 <header class="special">
-                    <h2>Get Visitor Center Locations, Operating Hours, & More.</h2>
+                    <h2>Learn About Your Destination.</h2>
                     <p>Select your destination <b>-OR-</b> state of choice below.<br>If searching by keyword, specify a type or state for accurate results.</p>
                 </header>
 
+                <!-- Back to Top Button Functionality -->
                 <script>
                     // When the user scrolls down 20px from the top of the document, show the button
                     window.onscroll = function () {
@@ -74,7 +83,7 @@
                 <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
 
                 <div class="content">
-                    <form name="General Search" action="VCServletPre">
+                    <form name="General Search" action="EdServletPre">
                         <div style="margin-bottom: 30px">
                             <div class="row">
                                 <div class="col-12">
@@ -86,7 +95,7 @@
                         <div class="row">
                             <div class="col-5">
                                 <select name="destination" id="destination">
-                                    <option value="">- All Destinations -</option>
+                                    <option value="">All Destinations</option>
 
                                     <optgroup label="A">
                                         <option value="abli">Abraham Lincoln Birthplace National Historical Park</option>
@@ -636,8 +645,12 @@
                                     </optgroup>
                                 </select>
                             </div>
-
-                            <div class="col-3">
+                            
+                            <div class="col-1" style="margin-top: 14px">
+                                <p><b>-OR-</b></p>
+                            </div>
+                            
+                            <div class="col-2">
                                 <select name="state" id="state">
                                     <option value="">All States</option>
 
@@ -719,10 +732,11 @@
 
                             <div class="col-2">
                                 <select name="type" id="type">
-                                    <option value="both">All Types</option>
+                                    <option value="">All Types</option>
 
-                                    <option value="vc">Visitor Centers</option>
-                                    <option value="camp">Campgrounds</option>
+                                    <option value="less">Lesson Plans</option>
+                                    <option value="peop">People</option>
+                                    <option value="plac">Place</option>
                                 </select>
                             </div>
 

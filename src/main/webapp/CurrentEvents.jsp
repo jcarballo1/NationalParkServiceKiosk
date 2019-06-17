@@ -1,13 +1,21 @@
-<!DOCTYPE HTML>
-<!--
-    Document    : GeneralSearch
+<%--       
+    Document    : CurrentEvents
     Author      : Jennifer Carballo
     Description : HTML page that presents and requests search query; passes input to Pre-Servlet
     Template    : Industrious by TEMPLATED
--->
+--%>
+
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="org.mypackage.nationalpark.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import ="org.mypackage.nationalpark.CESearchRequest" language="java"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <title>General Park Information</title>
+        <title>Current Events</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta name="description" content="" />
@@ -28,28 +36,28 @@
         <nav id="menu">
             <ul class="links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="GeneralSearch.html">General Park Information</a></li>
-                <li><a href="VisitorCenter.html">Visitor Centers</a></li>
-                <li><a href="CurrentEvents.html">Current Events</a></li>
-                <li><a href="Education.html">Education</a></li>
-                <li><a href="Map.html">Map</a></li>
-                <li><a href="Gallery.html">Destination Gallery</a></li>
+                <li><a href="GeneralSearch.jsp">General Park Information</a></li>
+                <li><a href="VisitorCenter.jsp">Visitor Centers</a></li>
+                <li><a href="CurrentEvents.jsp">Current Events</a></li>
+                <li><a href="Education.jsp">Education</a></li>
+                <li><a href="Map.jsp">Map</a></li>
+                <li><a href="Gallery.jsp">Destination Gallery</a></li>
             </ul>
         </nav>
 
-        <!-- Heading -->
-        <div id="heading">
-            <h1>General Park Information</h1>
+        <!-- Heading w/ Custom Styling -->
+        <div id="heading" style="background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url(images/Event.jpg); background-position: bottom">
+            <h1>Current Events</h1>
         </div>
 
         <!-- Main -->
         <section id="main" class="wrapper">
             <div class="inner">
                 <header class="special">
-                    <h2>Get Locations, Operating Hours, & More.</h2>
-                    <p>Select your destination <b>-OR-</b> state of choice below.<br>To view by designation, add a state for accurate results.</p>
+                    <h2>Keep Up With Alerts, News Releases & More.</h2>
+                    <p>Select your destination <b>-OR-</b> state of choice below.<br>If searching by keyword, specify a type or state for accurate results.</p>
                 </header>
-
+                
                 <!-- Back to Top Button Functionality -->
                 <script>
                     // When the user scrolls down 20px from the top of the document, show the button
@@ -75,11 +83,21 @@
                 <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
 
                 <div class="content">
-                    <form name="General Search" action="GenSearchServletPre">
+                    <form name="General Search" action="CEServletPre">
+                        <!-- Keyword Search Bar -->
+                        <div style="margin-bottom: 30px">
+                            <div class="row">
+                                <div class="col-12">
+                                    <input type="text" name="keyword" placeholder="Keyword Search" />
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="row">
-                            <div class="col-7">
+                            <!-- Destination Drop Down -->
+                            <div class="col-5">
                                 <select name="destination" id="destination">
-                                    <option value="">- All Destinations -</option>
+                                    <option value="">All Destinations</option>
 
                                     <optgroup label="A">
                                         <option value="abli">Abraham Lincoln Birthplace National Historical Park</option>
@@ -629,8 +647,13 @@
                                     </optgroup>
                                 </select>
                             </div>
-
-                            <div class="col-5">
+                            
+                            <div class="col-1" style="margin-top: 14px">
+                                <p><b>-OR-</b></p>
+                            </div>
+                            
+                            <!-- State Drop Down -->
+                            <div class="col-2">
                                 <select name="state" id="state">
                                     <option value="">All States</option>
 
@@ -709,70 +732,20 @@
                                     <option value="wy">Wyoming</option>
                                 </select>
                             </div>
-                        </div>
+                            
+                            <!-- Type Drop Down -->
+                            <div class="col-2">
+                                <select name="type" id="type">
+                                    <option value="">All Types</option>
 
-                        <div class="row" style="margin-top: 30px">
-                            <div class="col-10">
-                                <select name="designation" id="designation">
-                                    <option value="">All Designations</option>
-
-                                    <option value="Affiliated Area">Affiliated Area</option>
-                                    <option value="Cultural Heritage Corridor">Cultural Heritage Corridor</option>
-                                    <option value="Ecological & Historic Preserve">Ecological & Historic Preserve</option>
-                                    <option value="Heritage Area">Heritage Area</option>
-                                    <option value="International Historic Site">International Historic Site</option>
-                                    <option value="International Park">International Park</option>
-                                    <option value="Memorial">Memorial</option>
-                                    <option value="Memorial Parkway">Memorial Parkway</option>
-                                    <option value="National Battlefield">National Battlefield</option>
-                                    <option value="National Battlefield Park">National Battlefield Park</option>
-                                    <option value="National Battlefield Site">National Battlefield Site</option>
-                                    <option value="National Geologic Trail">National Geologic Trail</option>
-                                    <option value="National Heritage Area">National Heritage Area</option>
-                                    <option value="National Heritage Corridor">National Heritage Corridor</option>
-                                    <option value="National Heritage Partnership">National Heritage Partnership</option>
-                                    <option value="National Historic Area">National Historic Area</option>
-                                    <option value="National Historic District">National Historic District</option>
-                                    <option value="National Historic Site">National Historic Site</option>
-                                    <option value="National Historic Trail">National Historic Trail</option>
-                                    <option value="National Historical Park">National Historical Park</option>
-                                    <option value="National Historical Park and Ecological Preserve">National Historical Park and Ecological Preserve</option>
-                                    <option value="National Historical Park and Preserve">National Historical Park and Preserve</option>
-                                    <option value="National Historical Reserve">National Historical Reserve</option>
-                                    <option value="National Lakeshore">National Lakeshore</option>
-                                    <option value="National Memorial">National Memorial</option>
-                                    <option value="National Military Park">National Military Park</option>
-                                    <option value="National Monument">National Monument</option>
-                                    <option value="National Monument & Preserve">National Monument & Preserve</option>
-                                    <option value="National Monument and Historic Shrine">National Monument and Historic Shrine</option>
-                                    <option value="National Monument of America">National Monument of America</option>
-                                    <option value="National Park">National Park</option>
-                                    <option value="National Park & Preserve">National Park & Preserve</option>
-                                    <option value="National Parks">National Parks</option>
-                                    <option value="National Preserve">National Preserve</option>
-                                    <option value="National Recreation Area">National Recreation Area</option>
-                                    <option value="National Recreational River">National Recreational River</option>
-                                    <option value="National Reserve">National Reserve</option>
-                                    <option value="National River">National River</option>
-                                    <option value="National River & Recreation Area">National River & Recreation Area</option>
-                                    <option value="National River and Recreation Area">National River and Recreation Area</option>
-                                    <option value="National Scenic River">National Scenic River</option>
-                                    <option value="National Scenic Riverway">National Scenic Riverway</option>
-                                    <option value="National Scenic Riverways">National Scenic Riverways</option>
-                                    <option value="National Scenic Trail">National Scenic Trail</option>
-                                    <option value="National Seashore">National Seashore</option>
-                                    <option value="National Wild and Scenic River">National Wild and Scenic River</option>
-                                    <option value="National and State Parks">National and State Parks</option>
-                                    <option value="Park">Park</option>
-                                    <option value="Parkway">Parkway</option>
-                                    <option value="Part of Colonial National Historical Park">Part of Colonial National Historical Park</option>
-                                    <option value="Part of Statue of Liberty National Monument">Part of Statue of Liberty National Monument</option>
-                                    <option value="Scenic & Recreational River">Scenic & Recreational River</option>
-                                    <option value="Wild & Scenic River">Wild & Scenic River</option>
-                                    <option value="Wild River">Wild River</option>
+                                    <option value="alr">Alerts</option>
+                                    <option value="art">Articles</option>
+                                    <option value="ev">Events</option>
+                                    <option value="nr">News Releases</option>
                                 </select>
                             </div>
-
+                            
+                            <!-- Search Submit Button -->
                             <div class="col-2">
                                 <input type="submit" value="Search" />
                             </div>
@@ -786,13 +759,16 @@
         <footer id="footer">
             <div class="inner">
                 <div class="content">
+                    <!-- Left of Footer-->
                     <section>
                         <h3>About this Web Application</h3>
                         <p>Created by Jennifer Carballo, the National Park Service Kiosk was built as part of Capital One's Software Engineering Summit application for the Summer of 2019.</p>
                     </section>
-
+                    
+                    <!-- Blank Space -->
                     <section></section>
-
+                    
+                    <!-- Right of Footer-->
                     <section>
                         <h4>View The Code</h4>
                         <ul class="plain">

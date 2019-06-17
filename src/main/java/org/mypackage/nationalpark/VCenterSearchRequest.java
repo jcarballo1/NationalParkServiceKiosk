@@ -54,7 +54,7 @@ public class VCenterSearchRequest {
         keywords = words;
         desigs = ds;
         states = sts;
-        if (key.equals("both")) {
+        if (key.equals("")) {
             sendGetVC();
             sendGetCamp();
         } else if (key.equals("vc")) {

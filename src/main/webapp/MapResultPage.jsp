@@ -38,12 +38,12 @@
     <nav id="menu">
         <ul class="links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="GeneralSearch.html">General Park Information</a></li>
-            <li><a href="VisitorCenter.html">Visitor Centers</a></li>
-            <li><a href="CurrentEvents.html">Current Events</a></li>
-            <li><a href="Education.html">Education</a></li>
-            <li><a href="Map.html">Map</a></li>
-            <li><a href="Gallery.html">Destination Gallery</a></li>
+            <li><a href="GeneralSearch.jsp">General Park Information</a></li>
+            <li><a href="VisitorCenter.jsp">Visitor Centers</a></li>
+            <li><a href="CurrentEvents.jsp">Current Events</a></li>
+            <li><a href="Education.jsp">Education</a></li>
+            <li><a href="Map.jsp">Map</a></li>
+            <li><a href="Gallery.jsp">Destination Gallery</a></li>
         </ul>
     </nav>
 
@@ -654,7 +654,7 @@
                     <div class="col-12">                       
                         <!-- Map from Google Maps API -->
                         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2C3nj6shFaou4TBmgevRbKL3p5aN4UxY&v=3.exp&sensor=false"></script>
-                        
+
                         <!-- Coordinate input processing and Map Functionality -->
                         <%
                             //check if corrdinates are available
@@ -664,35 +664,35 @@
                                 out.println("<li>No coordinates could be found. Please try a different destination.<li>");
                                 out.println("</ul>");
                                 show = false;
-                            } 
-                        %>
-                        
-                        <script>
-                            var map;
-                            function initialize() {
-                                var mapOptions = {
-                                    zoom: 10,
-                                    center: new google.maps.LatLng(${latitude}, ${longitude})
-                                };
-                                map = new google.maps.Map(document.getElementById('map-canvas'),
-                                        mapOptions);
-
-                                var marker = new google.maps.Marker({
-                                    position: new google.maps.LatLng(${latitude}, ${longitude}),
-                                    map: map,
-                                    title: 'Destination'
-                                });
                             }
-                            google.maps.event.addDomListener(window, 'load', initialize);
+                        %>
+
+                        <script>
+                var map;
+                function initialize() {
+                    var mapOptions = {
+                        zoom: 10,
+                        center: new google.maps.LatLng(${latitude}, ${longitude})
+                    };
+                    map = new google.maps.Map(document.getElementById('map-canvas'),
+                            mapOptions);
+
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(${latitude}, ${longitude}),
+                        map: map,
+                        title: 'Destination'
+                    });
+                }
+                google.maps.event.addDomListener(window, 'load', initialize);
                         </script>
-                                        
+
                         <%
                             //only produce map if coordinates are found
-                            if(show){
+                            if (show) {
                                 out.println("<div id=\"map-canvas\" style=\"height:500px;\"></div>");
                             }
                         %>
-                        
+
                     </div>
                 </div>
             </div>

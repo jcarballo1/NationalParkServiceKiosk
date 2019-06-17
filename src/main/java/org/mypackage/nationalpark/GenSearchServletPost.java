@@ -49,10 +49,10 @@ public class GenSearchServletPost extends HttpServlet {
                         for (j = 0; j < res.get(i).getAdds().size(); j++) {
                             out.println(res.get(i).getAdds().get(j).getType() + ":");
                             out.println(res.get(i).getAdds().get(j).getLine1());
-                            if (res.get(i).getAdds().get(j).getLine2() != "") {
+                            if (!res.get(i).getAdds().get(j).getLine2().equals("")) {
                                 out.println(res.get(i).getAdds().get(j).getLine2());
                             }
-                            if (res.get(i).getAdds().get(j).getLine3() != "") {
+                            if (!res.get(i).getAdds().get(j).getLine3().equals("")) {
                                 out.println(res.get(i).getAdds().get(j).getLine3());
                             }
                             out.println(res.get(i).getAdds().get(j).getCity() + ", " + res.get(i).getAdds().get(j).getState()
@@ -69,7 +69,7 @@ public class GenSearchServletPost extends HttpServlet {
 
                     if (res.get(i).getEmails().size() > 0) {
                         for (j = 0; j < res.get(i).getEmails().size(); j++) {
-                            if (res.get(i).getEmails().get(j) != "" && res.get(i).getEmails().get(j) != "0@0") {
+                            if (!res.get(i).getEmails().get(j).equals("") && !res.get(i).getEmails().get(j).equals("0@0")) {
                                 out.println(res.get(i).getEmails().get(j) + "<br>");
                             }
                         }
@@ -78,13 +78,13 @@ public class GenSearchServletPost extends HttpServlet {
                     if (res.get(i).getFees().size() > 0) {
                         for (j = 0; j < res.get(i).getFees().size(); j++) {
                             out.println("<br>");
-                            if (res.get(i).getFees().get(j).getTitle() != "") {
+                            if (!res.get(i).getFees().get(j).getTitle().equals("")) {
                                 out.println(res.get(i).getFees().get(j).getTitle() + ":<br>");
                             }
-                            if (res.get(i).getFees().get(j).getDes() != "") {
+                            if (!res.get(i).getFees().get(j).getDes().equals("")) {
                                 out.println(res.get(i).getFees().get(j).getDes() + "<br>");
                             }
-                            if (res.get(i).getFees().get(j).getCost() != "") {
+                            if (!res.get(i).getFees().get(j).getCost().equals("")) {
                                 out.println("$" + res.get(i).getFees().get(j).getCost() + "<br>");
                             }
                         }
@@ -93,13 +93,13 @@ public class GenSearchServletPost extends HttpServlet {
                     if (res.get(i).getPasses().size() > 0) {
                         for (j = 0; j < res.get(i).getPasses().size(); j++) {
                             out.println("<br>");
-                            if (res.get(i).getPasses().get(j).getTitle() != "") {
+                            if (!res.get(i).getPasses().get(j).getTitle().equals("")) {
                                 out.println(res.get(i).getPasses().get(j).getTitle() + ":<br>");
                             }
-                            if (res.get(i).getPasses().get(j).getDes() != "") {
+                            if (!res.get(i).getPasses().get(j).getDes().equals("")) {
                                 out.println(res.get(i).getPasses().get(j).getDes() + "<br>");
                             }
-                            if (res.get(i).getPasses().get(j).getCost() != "") {
+                            if (!res.get(i).getPasses().get(j).getCost().equals("")) {
                                 out.println("$" + res.get(i).getPasses().get(j).getCost() + "<br>");
                             }
                         }

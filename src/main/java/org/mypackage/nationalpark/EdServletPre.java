@@ -31,7 +31,6 @@ public class EdServletPre extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
             String desig = request.getParameter("destination");
             String state = request.getParameter("state");

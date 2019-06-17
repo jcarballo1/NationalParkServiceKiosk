@@ -40,7 +40,6 @@ public class GenSearchServletPre extends HttpServlet {
             GenSearchRequest req = new GenSearchRequest();//Creating class Object
             ArrayList<GeneralSearchResult> res = req.sendGetSingle(destin, state, desig); //passes in search query
             request.setAttribute("res", res); //sets result to be accessed by jsp
-            
             RequestDispatcher dispatcher = request.getRequestDispatcher("GeneralSearchResultPage.jsp");
             dispatcher.forward(request, response);
         } finally {

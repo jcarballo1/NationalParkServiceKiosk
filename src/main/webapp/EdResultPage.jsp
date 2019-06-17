@@ -37,12 +37,12 @@
     <nav id="menu">
         <ul class="links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="GeneralSearch.html">General Park Information</a></li>
-            <li><a href="VisitorCenter.html">Visitor Centers</a></li>
-            <li><a href="CurrentEvents.html">Current Events</a></li>
-            <li><a href="Education.html">Education</a></li>
-            <li><a href="Map.html">Map</a></li>
-            <li><a href="Gallery.html">Destination Gallery</a></li>
+            <li><a href="GeneralSearch.jsp">General Park Information</a></li>
+            <li><a href="VisitorCenter.jsp">Visitor Centers</a></li>
+            <li><a href="CurrentEvents.jsp">Current Events</a></li>
+            <li><a href="Education.jsp">Education</a></li>
+            <li><a href="Map.jsp">Map</a></li>
+            <li><a href="Gallery.jsp">Destination Gallery</a></li>
         </ul>
     </nav>
 
@@ -96,7 +96,7 @@
                     <div class="row">
                         <div class="col-5">
                             <select name="destination" id="destination">
-                                <option value="">- All Destinations -</option>
+                                <option value="">All Destinations</option>
 
                                 <optgroup label="A">
                                     <option value="abli">Abraham Lincoln Birthplace National Historical Park</option>
@@ -647,7 +647,11 @@
                             </select>
                         </div>
 
-                        <div class="col-3">
+                        <div class="col-1" style="margin-top: 14px">
+                                <p><b>-OR-</b></p>
+                        </div>
+                        
+                        <div class="col-2">
                             <select name="state" id="state">
                                 <option value="">All States</option>
 
@@ -729,7 +733,7 @@
 
                         <div class="col-2">
                             <select name="type" id="type">
-                                <option value="both">All Types</option>
+                                <option value="">All Types</option>
 
                                 <option value="less">Lesson Plans</option>
                                 <option value="peop">People</option>
