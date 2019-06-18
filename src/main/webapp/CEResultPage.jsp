@@ -650,12 +650,8 @@
                             </select>
                         </div>
                         
-                        <div class="col-1" style="margin-top: 14px">
-                                <p><b>-OR-</b></p>
-                        </div>
-                        
                         <!-- State Drop Down -->
-                        <div class="col-2">
+                        <div class="col-3">
                             <select name="state" id="state">
                                 <option value="">All States</option>
 

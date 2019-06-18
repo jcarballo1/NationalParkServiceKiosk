@@ -71,6 +71,7 @@ public class GalleryRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
+        jsonString = jsonString.replaceAll("\\<.*?>","");
         
         parseJSON();
         return images;

@@ -26,6 +26,8 @@ public class CESearchResult {
     private String contactName = "";
     private String contactPhone = "";
     private ArrayList<String> dates = new ArrayList<>();
+    private String dateStart = "";
+    private String dateEnd = "";
     private String location = "";
     private String timeStart = "";
     private String timeEnd = "";
@@ -92,6 +94,23 @@ public class CESearchResult {
         contactName = name;
         contactPhone = phone;
         dates = ds;
+        location = l;
+        timeStart = tStart;
+        timeEnd = tEnd;
+        description = d;
+        title = t;
+        fees = f;
+        url = u;
+        imageURL = iurl;
+        type = "Event";
+    }
+    
+    public CESearchResult(String e, String name, String phone, String ds, String de, String l, String tStart, String tEnd, String d, String t, String f, String u, String iurl) { //Event
+        email = e;
+        contactName = name;
+        contactPhone = phone;
+        dateStart = ds;
+        dateEnd = de;
         location = l;
         timeStart = tStart;
         timeEnd = tEnd;
@@ -372,6 +391,34 @@ public class CESearchResult {
      */
     public void setFees(String fees) {
         this.fees = fees;
+    }
+
+    /**
+     * @return the dateStart
+     */
+    public String getDateStart() {
+        return dateStart;
+    }
+
+    /**
+     * @param dateStart the dateStart to set
+     */
+    public void setDateStart(String dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    /**
+     * @return the dateEnd
+     */
+    public String getDateEnd() {
+        return dateEnd;
+    }
+
+    /**
+     * @param dateEnd the dateEnd to set
+     */
+    public void setDateEnd(String dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
 }

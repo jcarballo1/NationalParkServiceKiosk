@@ -103,6 +103,7 @@ public class CESearchRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
+        jsonString = jsonString.replaceAll("\\<.*?>","");
     }
 
     /**
@@ -281,7 +282,9 @@ public class CESearchRequest {
             String email = "";
             String contactName = "";
             String contactPhone = "";
-            ArrayList<String> dates = new ArrayList<>();
+            //ArrayList<String> dates = new ArrayList<>();
+            String dateStart = "";
+            String dateEnd = "";
             String location = "";
             String timeStart = "";
             String timeEnd = "";
@@ -306,15 +309,25 @@ public class CESearchRequest {
             } catch (Exception e) {
             }
 
+//            try {
+//                curr = subObj.getJSONArray("dates");
+//            } catch (Exception e) {
+//                good = false;
+//            }
+//            if (good) {
+//                for (int j = 0; j < curr.length(); j++) {
+//                    dates.add(curr.getString(j));
+//                }
+//            }
+
             try {
-                curr = subObj.getJSONArray("dates");
+                dateStart = subObj.getString("datestart");
             } catch (Exception e) {
-                good = false;
             }
-            if (good) {
-                for (int j = 0; j < curr.length(); j++) {
-                    dates.add(curr.getString(j));
-                }
+            
+            try {
+                dateEnd = subObj.getString("dateend");
+            } catch (Exception e) {
             }
 
             try {
@@ -329,9 +342,11 @@ public class CESearchRequest {
                 good = false;
             }
             if (good) {
-                currObj = curr.getJSONObject(0);
-                timeStart = currObj.getString("timestart");
-                timeEnd = currObj.getString("timeend");
+                if (curr.length() > 0) {
+                    currObj = curr.getJSONObject(0);
+                    timeStart = currObj.getString("timestart");
+                    timeEnd = currObj.getString("timeend");
+                }
             }
 
             try {
@@ -366,7 +381,7 @@ public class CESearchRequest {
                 }
             }
 
-            results.add(new CESearchResult(email, contactName, contactPhone, dates, location, timeStart,
+            results.add(new CESearchResult(email, contactName, contactPhone, dateStart, dateEnd, location, timeStart,
                     timeEnd, descrip, title, fees, url, imageURL));
         }
     }

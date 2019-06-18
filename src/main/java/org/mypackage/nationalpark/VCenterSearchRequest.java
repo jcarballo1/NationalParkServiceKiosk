@@ -98,6 +98,7 @@ public class VCenterSearchRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
+        jsonString = jsonString.replaceAll("\\<.*?>","");
     }
 
     /**

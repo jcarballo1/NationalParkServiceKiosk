@@ -96,6 +96,7 @@ public class EdSearchRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
+        jsonString = jsonString.replaceAll("\\<.*?>","");
     }
 
     /**

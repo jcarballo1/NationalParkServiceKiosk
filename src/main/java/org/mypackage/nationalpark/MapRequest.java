@@ -75,6 +75,8 @@ public class MapRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
+        jsonString = jsonString.replaceAll("\\<.*?>","");
+        
         parseJSON();
         return req;
     }

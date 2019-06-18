@@ -38,10 +38,10 @@ public class EdServletPost extends HttpServlet {
                     out.println("<li>Type: " + res.get(i).getType() + "<br><br>");
                     if (res.get(i).getType().equals("Lesson Plan")) {
                         if (!res.get(i).getTitle().equals("")) {
-                            out.println(res.get(i).getTitle() + "<br><br>");
+                            out.println("<b>" + res.get(i).getTitle() + "</b><br><br>");
                         }
                         if (!res.get(i).getSubject().equals("")) {
-                            out.println(res.get(i).getSubject() + "<br><br>");
+                            out.println("Subject(s): " + res.get(i).getSubject() + "<br><br>");
                         }
                         if (!res.get(i).getObjective().equals("")) {
                             out.println(res.get(i).getObjective() + "<br><br>");
@@ -51,7 +51,7 @@ public class EdServletPost extends HttpServlet {
                         }
                     } else {
                         if (!res.get(i).getTitle().equals("")) {
-                            out.println(res.get(i).getTitle() + "<br><br>");
+                            out.println("<b>" + res.get(i).getTitle() + "</b><br><br>");
                         }
                         if (!res.get(i).getListingDes().equals("")) {
                             out.println(res.get(i).getListingDes() + "<br>");

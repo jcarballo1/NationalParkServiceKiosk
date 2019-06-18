@@ -82,6 +82,7 @@ public class GenSearchRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
+        jsonString = jsonString.replaceAll("\\<.*?>","");
         parseJSON();
 
         return results;

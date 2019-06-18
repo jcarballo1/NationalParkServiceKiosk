@@ -39,7 +39,7 @@ public class VCServletPost extends HttpServlet {
             } else {
                 for (int i = 0; i < res.size(); i++) {
                     out.println("<li>Type: " + res.get(i).getType() + "<br><br>");
-                    out.println(res.get(i).getName() + "<br><br>");
+                    out.println("<b>" + res.get(i).getName() + "</b><br><br>");
                     out.println(res.get(i).getDescrip() + "<br>");
 
                     int j;
@@ -80,18 +80,19 @@ public class VCServletPost extends HttpServlet {
                     }
 
                     if (res.get(i).getType().equals("Campground")) {
-                        if (!res.get(i).getWheelchair().equals("")) {
-                            out.println("<br>");
-                            out.println(res.get(i).getWheelchair());
-                            out.println("<br>");
-                        }
-
+                        out.println("<br>ADA Information if Applicable:");
+//                        if (!res.get(i).getWheelchair().equals("")) {
+//                            out.println("<br>Wheelchair Accessible: ");
+//                            out.println(res.get(i).getWheelchair());
+//                        }
+                        
                         if (!res.get(i).getAda().equals("")) {
                             out.println("<br>");
                             out.println(res.get(i).getAda());
-                            out.println("<br>");
                         }
-
+                        out.println("<br>");
+                        
+                        out.println("<br>Amenities if Applicable:");
                         if (!res.get(i).getToilets().equals("")) {
                             out.println("<br>Toilets: " + res.get(i).getToilets());
                         }
@@ -103,6 +104,7 @@ public class VCServletPost extends HttpServlet {
                         if (!res.get(i).getInternet().equals("")) {
                             out.println("<br>Internet: " + res.get(i).getInternet());
                         }
+                        out.println("<br>");
 
                         if (!res.get(i).getWater().equals("")) {
                             out.println("<br>Potable Water: " + res.get(i).getWater());

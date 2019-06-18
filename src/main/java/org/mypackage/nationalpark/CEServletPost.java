@@ -40,7 +40,7 @@ public class CEServletPost extends HttpServlet {
                     out.println("<li>Type: " + res.get(i).getType() + "<br><br>");
                     if (res.get(i).getType().equals("Alert")) { //process for alerts
                         if (!res.get(i).getTitle().equals("")) {
-                            out.println(res.get(i).getTitle() + "<br><br>");
+                            out.println("<b>" + res.get(i).getTitle() + "</b><br><br>");
                         }
 
                         if (!res.get(i).getCategory().equals("")) {
@@ -57,7 +57,7 @@ public class CEServletPost extends HttpServlet {
                         }
                     } else if (res.get(i).getType().equals("Article")) { //process for articles
                         if (!res.get(i).getTitle().equals("")) {
-                            out.println(res.get(i).getTitle() + "<br>");
+                            out.println("<b>" + res.get(i).getTitle() + "</b><br>");
                         }
 
                         if (!res.get(i).getListingDes().equals("")) {
@@ -74,30 +74,29 @@ public class CEServletPost extends HttpServlet {
                         }
                     } else if (res.get(i).getType().equals("Event")) { //process for events
                         if (!res.get(i).getTitle().equals("")) {
-                            out.println(res.get(i).getTitle() + "<br>");
+                            out.println("<b>" + res.get(i).getTitle() + "</b><br>");
                         }
                         if (!res.get(i).getDescription().equals("")) {
-                            out.println("<br>" + res.get(i).getDescription() + "");
+                            out.println("<br>" + res.get(i).getDescription() + "<br>");
                         }
                         if (!res.get(i).getLocation().equals("")) {
-                            out.println("Where: " + res.get(i).getLocation());
+                            out.println("<br>Where: " + res.get(i).getLocation());
                         }
-                        if (res.get(i).getDates().size() > 0) {
+                        if (!res.get(i).getDateStart().equals("")) {
                             out.println("<br>When: ");
-                            for (int j = 0; j < res.get(i).getDates().size(); j++) {
-                                if (j == res.get(i).getDates().size() - 1) {
-                                    out.println(res.get(i).getDates().get(j));
-                                } else {
-                                    out.println(res.get(i).getDates().get(j) + ", ");
-                                }
+                            out.println(res.get(i).getDateStart());
+                            if (!res.get(i).getDateEnd().equals("") && !res.get(i).getDateEnd().equals(res.get(i).getDateStart())) {
+                                out.println(" to " + res.get(i).getDateEnd());
                             }
                         }
                         if (!res.get(i).getTimeStart().equals("")) {
                             out.println("<br>From: " + res.get(i).getTimeStart());
-                        }
-                        if (!res.get(i).getTimeEnd().equals("")) {
-                            out.println(" To: " + res.get(i).getTimeEnd() + "<br>");
-                        }
+                            if (!res.get(i).getTimeEnd().equals("")) {
+                                out.println(" To: " + res.get(i).getTimeEnd() + "<br>");
+                            }
+                        }else{
+                            out.println("<br>");
+                        }                     
                         if (!res.get(i).getFees().equals("")) {
                             out.println("<br>Fee Info: " + res.get(i).getFees() + "<br>");
                         }
@@ -119,7 +118,7 @@ public class CEServletPost extends HttpServlet {
                         }
                     } else { //process for news releases
                         if (!res.get(i).getTitle().equals("")) {
-                            out.println(res.get(i).getTitle() + "<br>");
+                            out.println("<b>" + res.get(i).getTitle() + "</b><br>");
                         }
                         if (!res.get(i).getReleaseDate().equals("")) {
                             out.println("<br>Release Date: " + res.get(i).getReleaseDate() + "<br>");
