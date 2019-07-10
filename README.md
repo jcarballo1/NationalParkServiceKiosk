@@ -1,5 +1,7 @@
 # National Park Info Kiosk - Capital One Software Engineering Summit Coding Challenge
 
+**Accepted!**
+
 Website can be accessed [here](https://nationalparkservicekiosk.herokuapp.com/).
 
 Diagram provided as .pdf in root repo.
